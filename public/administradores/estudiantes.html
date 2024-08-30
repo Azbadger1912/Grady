@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Técnico Don Bosco</title>
+        <link rel="stylesheet" href="styles/estudiantes.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel='stylesheet'>
+    </head>
+    <body>
+        <!-- barra lateral -->
+        <nav class="sidebar">
+            <div class="logo-menu">
+                <img src="assets/logo_grady.svg" class="name">
+                <i class="bx bx-menu toggle-btn"></i>
+            </div>
+            <ul class="list">
+                <li class="list-item">
+                    <a href="pagina_principal.html">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span class="link-name" style="--i:1;">Inicio</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="mensajeria.html">
+                        <i class='bx bx-message-detail'></i>
+                        <span class="link-name" style="--i:1;">Mensajería</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="institucion.html">
+                        <i class='bx bxs-graduation'></i>
+                        <span class="link-name" style="--i:2;">Institución</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="profesores.html">
+                        <i class='bx bx-chalkboard'></i>
+                        <span class="link-name" style="--i:3;">Profesores</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="estudiantes.html" style="background-color: white; color: #0e8282;">
+                        <i class='bx bx-file'></i>
+                        <span class="link-name" style="--i:4;">Estudiantes</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="info.html">
+                        <i class='bx bx-info-circle' ></i>
+                        <span class="link-name" style="--i:4;">Información</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="ajustes.html">
+                        <i class='bx bx-cog' ></i>
+                        <span class="link-name" style="--i:5;">Configuración</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a onclick="cerrarSesion()">
+                        <i class='bx bx-log-out'></i>
+                        <span class="link-name" style="--i:6;">Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+       
+        
+        <!-- barra superior -->
+        <header>
+            <div style="display: flex;; width: 100%; justify-content: center;">
+                <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" class="logo" style="margin-right: 10px;">
+                <h3 style="white-space: nowrap;"> Instituto Técnico Don Bosco </h3>
+            </div>
+            <h3 style="position: absolute; right: 0%;"><a href="ajustes.html" style="color: white;"><i class='bx bx-user-circle' style="padding-right: 10px;"></i></a></h3>
+        </header>
+    <main>
+        <span id="title">ESTUDIANTES</span>    
+        <div class="main-content">
+            <div class="content">
+                <span class="subtitle">Usuario</span>
+                <textarea name="" id="" class="input"></textarea>
+                <span class="subtitle">Contraseña</span>
+                <textarea name="" id="" class="input" style="margin-bottom: 16px;"></textarea>
+                <span class="subtitle">Cursos</span>
+                <div class="list_container">
+                    <ul id="cursos_list">
+                        <li class="item"><input type="radio" name="curso">1A</li>
+                        <li class="item"><input type="radio" name="curso">2A</li>
+                        <li class="item"><input type="radio" name="curso">3A</li>
+                        <li class="item"><input type="radio" name="curso">4A</li>
+                        <li class="item"><input type="radio" name="curso">4B</li>
+                        <li class="item"><input type="radio" name="curso">5A</li>
+                        <li class="item"><input type="radio" name="curso">5B</li>
+                        <li class="item"><input type="radio" name="curso">6A</li>
+                        <li class="item"><input type="radio" name="curso">6B</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content">
+                <span class="subtitle">Nombre Completo</span>
+                <textarea name="" id="" class="input"></textarea>
+                <span class="subtitle">Cédula o pasaporte</span>
+                <textarea name="" id="" class="input" style="margin-bottom: 16px;"></textarea>
+                <div class="btns">
+                    <button class="check"></button>
+                    <button class="x"> <i class='bx bxs-trash'></i> </button>
+                </div>
+            </div>
+            <ul id="estds_list">
+                <li class="sortable-item">Daniel García<span class="drag-handle">⋮⋮⋮</span></li>
+                <li class="sortable-item">Isabel Reyes<span class="drag-handle">⋮⋮⋮</span></li>
+                <li class="sortable-item">Fabricio Moreno<span class="drag-handle">⋮⋮⋮</span></li>
+                <li class="sortable-item">Gabriela Avión<span class="drag-handle">⋮⋮⋮</span></li>
+            </ul>
+        </div>
+    </main>
+    <script src="scripts/sidebar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var sortableList = document.getElementById('estds_list');
+
+            Sortable.create(sortableList, {
+                animation: 150,
+                handle: '.sortable-item',
+                ghostClass: 'sortable-ghost',
+            });
+        });
+    </script>
+</body>
+</html>

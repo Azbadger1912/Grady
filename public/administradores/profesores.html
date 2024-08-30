@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Técnico Don Bosco</title>
+        <link rel="stylesheet" href="styles/profesores.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel='stylesheet'>
+    </head>
+    <body>
+        <!-- barra lateral -->
+        <nav class="sidebar">
+            <div class="logo-menu">
+                <img src="assets/logo_grady.svg" class="name">
+                <i class="bx bx-menu toggle-btn"></i>
+            </div>
+            <ul class="list">
+                <li class="list-item">
+                    <a href="pagina_principal.html">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span class="link-name" style="--i:1;">Inicio</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="mensajeria.html">
+                        <i class='bx bx-message-detail'></i>
+                        <span class="link-name" style="--i:1;">Mensajería</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="institucion.html">
+                        <i class='bx bxs-graduation'></i>
+                        <span class="link-name" style="--i:2;">Institución</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="profesores.html" style="background-color: white; color: #0e8282;">
+                        <i class='bx bx-chalkboard'></i>
+                        <span class="link-name" style="--i:3;">Profesores</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="estudiantes.html">
+                        <i class='bx bx-file'></i>
+                        <span class="link-name" style="--i:4;">Estudiantes</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="info.html">
+                        <i class='bx bx-info-circle' ></i>
+                        <span class="link-name" style="--i:4;">Información</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="ajustes.html">
+                        <i class='bx bx-cog' ></i>
+                        <span class="link-name" style="--i:5;">Configuración</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a onclick="cerrarSesion()">
+                        <i class='bx bx-log-out'></i>
+                        <span class="link-name" style="--i:6;">Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+       
+        
+        <!-- barra superior -->
+        <header>
+            <div style="display: flex;; width: 100%; justify-content: center;">
+                <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" class="logo" style="margin-right: 10px;">
+                <h3 style="white-space: nowrap;"> Instituto Técnico Don Bosco </h3>
+            </div>
+            <h3 style="position: absolute; right: 0%;"><a href="ajustes.html" style="color: white;"><i class='bx bx-user-circle' style="padding-right: 10px;"></i></a></h3>
+        </header>
+        
+        <main>
+            <span id="title">PROFESORES</span>    
+            <div class="main-content">
+                <div class="content">
+                    <span class="subtitle">Usuario</span>
+                    <textarea name="" id="" class="input"></textarea>
+                    <span class="subtitle">Contraseña</span>
+                    <textarea name="" id="" class="input" style="margin-bottom: 16px;"></textarea>
+                    <span class="subtitle">Cursos</span>
+                    <div class="list_container">
+                        <ul id="cursos_list">
+                            <li class="item"><input type="checkbox">1A</li>
+                            <li class="item"><input type="checkbox">2A</li>
+                            <li class="item"><input type="checkbox">3A</li>
+                            <li class="item"><input type="checkbox">4A</li>
+                            <li class="item"><input type="checkbox">4B</li>
+                            <li class="item"><input type="checkbox">5A</li>
+                            <li class="item"><input type="checkbox">5B</li>
+                            <li class="item"><input type="checkbox">6A</li>
+                            <li class="item"><input type="checkbox">6B</li>
+                        </ul>
+                    </div>
+                    <span class="subtitle" style="margin-top: 1rem;">Consejería (opcional)</span>
+                    <div class="cmb">
+                        <select id="grado">
+                            <option value="1">11C</option>
+                            <option value="2">11D</option>
+                            <option value="3">12C</option>
+                            <option value="4">12D</option>
+                        </select>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                </div>
+                <div class="content">
+                    <span class="subtitle">Nombre Completo</span>
+                    <textarea name="" id="" class="input"></textarea>
+                    <span class="subtitle">Cédula o pasaporte</span>
+                    <textarea name="" id="" class="input" style="margin-bottom: 16px;"></textarea>
+                    <span class="subtitle">Cursos</span>
+                    <div class="list_container">
+                        <ul id="materias_list" class="hola">
+                            <li class="item"><input type="checkbox">Español</li>
+                            <li class="item"><input type="checkbox">Inglés</li>
+                            <li class="item"><input type="checkbox">Ciencias Sociales</li>
+                            <li class="item"><input type="checkbox">Informática</li>
+                            <li class="item"><input type="checkbox">Ciencias Naturales</li>
+                            <li class="item"><input type="checkbox">Educación Fisica</li>
+                            <li class="item"><input type="checkbox">Química</li>
+                            <li class="item"><input type="checkbox">Cívica</li>
+                            <li class="item"><input type="checkbox">Geografía</li>
+                            <li class="item"><input type="checkbox">Historia</li>
+                            <li class="item"><input type="checkbox">Filosofia</li>
+                        </ul>
+                    </div>
+                    <div class="btns">
+                        <button class="check"></button>
+                        <button class="x"> <i class='bx bxs-trash'></i> </button>
+                    </div>
+                </div>
+                <ul id="profs_list">
+                    <li class="sortable-item">Edwin Baños<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Gina Martinez<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Luis Caballero<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Madelene Vargas<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Secundino Valdés<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Lisbeth La Cruz<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Jorge Carrera<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">David Smith<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Nereyda de Smith<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Amithis Melgarejo<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Roy Quirós<span class="drag-handle">⋮⋮⋮</span></li>
+                </ul>
+            </div>
+        </main>
+        <script src="scripts/sidebar.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var sortableList = document.getElementById('profs_list');
+
+                Sortable.create(sortableList, {
+                    animation: 150,
+                    handle: '.sortable-item',
+                    ghostClass: 'sortable-ghost',
+                });
+            });
+        </script>
+    </body>
+</html>

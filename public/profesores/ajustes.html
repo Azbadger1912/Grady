@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Técnico Don Bosco</title>
+        <link rel="stylesheet" href="styles/ajustes.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <!-- barra lateral -->
+        <nav class="sidebar">
+            <div class="logo-menu">
+                <img src="assets/logo_grady.svg" class="name">
+                <i class="bx bx-menu toggle-btn"></i>
+            </div>
+            <ul class="list">
+                <li class="list-item">
+                    <a href="pagina_principal.html">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span class="link-name" style="--i:1;">Inicio</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="mensajeria.html">
+                        <i class='bx bx-message-detail'></i>
+                        <span class="link-name" style="--i:1;">Mensajería</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="agenda.html">
+                        <i class='bx bx-calendar' ></i>
+                        <span class="link-name" style="--i:2;">Agenda</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="evaluacion.html">
+                        <i class='bx bx-file'></i>
+                        <span class="link-name" style="--i:3;">Evaluaciones</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="consejeria.html">
+                        <i class='bx bx-book-reader'></i>
+                        <span class="link-name" style="--i:4;">Consejeria</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="info.html">
+                        <i class='bx bx-info-circle' ></i>
+                        <span class="link-name" style="--i:5;">Información</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="ajustes.html" style="background-color: white; color: #0e8282;">
+                        <i class='bx bx-cog' ></i>
+                        <span class="link-name" style="--i:6;">Configuración</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a onclick="cerrarSesion()">
+                        <i class='bx bx-log-out'></i>
+                        <span class="link-name" style="--i:7;">Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- barra superior -->
+        <header>
+            <div style="display: flex;; width: 100%; justify-content: center;">
+                <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" class="logo" style="margin-right: 10px;">
+                <h3 style="white-space: nowrap;"> Instituto Técnico Don Bosco </h3>
+            </div>
+            <h3 style="position: absolute; right: 0%;"><a href="ajustes.html" style="color: white;"><i class='bx bx-user-circle' style="padding-right: 10px;"></i></a></h3>
+        </header>
+        
+        <!-- contenido principal -->
+        <div class="main-content" >
+            <span style="padding: 4vh 0 0 10vh; font-size: 34px; color: #87e6e6; width: 100%;">AJUSTES</span>
+            <div style="width: 90%; display: flex; margin-top: 2%;">
+                <div >
+                    <div style="display: flex; width: 100%; align-items: center; height: 126px;">
+                        <div style="font-size: 150px; color: #0e8282; margin-top: 0; height: 150px; padding: 0;">
+                            <i class='bx bxs-user-circle'></i>
+                        </div>
+                        <div style="margin-left: 20px; margin-top: 20px;">
+                            <div style="display: flex; width: 100%; text-align: right; align-items: center;justify-content: end;">
+                                <p style="margin-right: 10px;">USUARIO:</p>
+                                <input type='text' class="txt_1" id="user">
+                            </div>
+                            <div style="display: flex; width: 100%; text-align: right; align-items: center;">
+                                <p style="margin-right: 10px;">CONTRASEÑA:</p>
+                                <input type='text' class="txt_1" id="pass">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 104px; margin-top: 20px;">
+                        <p style="margin-bottom: 8px;">CORREO ADJUNTO</p>
+                        <input type='text' class="txt_2" style="width: 100%" id="email">
+                        <div style="display: flex; justify-content: flex-end;">
+                            <button class="act" onclick="modificarDatos()">
+                                ACTUALIZAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-left: 10%; height: 210px; display: flex; flex-direction: column; margin-top: 20px;">
+                    <p style="margin-bottom: 20px;">ACTUALIZAR CONTRASEÑA</p>
+                    <p style="margin-bottom: 5px;">NUEVA CONTRASEÑA</p>
+                    <input type='password' class="txt_2" style="margin-bottom: 5px; width: 300px;" id="pass1">
+                    <p style="margin-bottom: 5px;">CONFIRMAR CONTRASEÑA</p>
+                    <input type='password' class="txt_2" style="width: 300px;" id="pass2">
+                    <div style="display: flex; justify-content: flex-end;">
+                        <button class="act" onclick="modificarPass()">
+                            ACTUALIZAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="scripts/ajustes.js"></script>
+    </body>
+</html>

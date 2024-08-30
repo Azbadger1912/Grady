@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Técnico Don Bosco</title>
+        <link rel="stylesheet" href="styles/agenda.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <!-- barra lateral -->
+        <nav class="sidebar">
+            <div class="logo-menu">
+                <img src="assets/logo_grady.svg" class="name">
+                <i class="bx bx-menu toggle-btn"></i>
+            </div>
+            <ul class="list">
+                <li class="list-item">
+                    <a href="pagina_principal.html">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span class="link-name" style="--i:1;">Inicio</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="mensajeria.html">
+                        <i class='bx bx-message-detail'></i>
+                        <span class="link-name" style="--i:1;">Mensajería</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="agenda.html" style="background-color: white; color: #0e8282;">
+                        <i class='bx bx-calendar' ></i>
+                        <span class="link-name" style="--i:2;">Agenda</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="evaluacion.html">
+                        <i class='bx bx-file'></i>
+                        <span class="link-name" style="--i:3;">Evaluaciones</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="consejeria.html">
+                        <i class='bx bx-book-reader'></i>
+                        <span class="link-name" style="--i:4;">Consejeria</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="info.html">
+                        <i class='bx bx-info-circle' ></i>
+                        <span class="link-name" style="--i:5;">Información</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="ajustes.html">
+                        <i class='bx bx-cog' ></i>
+                        <span class="link-name" style="--i:6;">Configuración</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a onclick="cerrarSesion()">
+                        <i class='bx bx-log-out'></i>
+                        <span class="link-name" style="--i:7;">Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- barra superior -->
+        <header>
+            <div style="display: flex;; width: 100%; justify-content: center;">
+                <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" class="logo" style="margin-right: 10px;">
+                <h3 style="white-space: nowrap;"> Instituto Técnico Don Bosco </h3>
+            </div>
+            <h3 style="position: absolute; right: 0%;"><a href="ajustes.html" style="color: white;"><i class='bx bx-user-circle' style="padding-right: 10px;"></i></a></h3>
+        </header>
+        
+        <!-- contenido principal -->
+        <div class="main-content" >
+            <span style="padding: 4vh 0 0 10vh; font-size: 34px; color: #87e6e6; width: 100%;">AGENDA</span>
+            <div style="width: 100%;">
+                <div style="display: flex; align-items: center; font-size: 40px; margin: 4vh 0; text-align: center; justify-content: center;">
+                    <a href="#" style="color: black; text-align: center;" onclick="prevMonth()">
+                        <i class='bx bx-chevron-left'></i>
+                    </a>
+                    <span style="margin: 0 5px; align-items: center; color: #0e8282; width: 450px;" id="tit_mes_ahno" ></span>
+                    <a href="#" style="color: black; text-align: center;" onclick="nextMonth()">
+                        <i class='bx bx-chevron-right'></i>
+                    </a>
+                </div>
+                <div class="selec">
+                    <div class="cmb">
+                        <select id="grupo"></select>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                </div>
+                <div class="selec" style="margin-bottom: 5vh;">
+                    <div class="cmb">
+                        <select id="trimestre">
+                            <option value="1">I TRIMESTRE</option>
+                            <option value="2">II TRIMESTRE</option>
+                            <option value="3">III TRIMESTRE</option>
+                        </select>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                </div>
+                <div class="calendar">
+                    <table class="content">
+                        <tr style="color: #16c4c4; font-size: 18px;">
+                            <td class="dias"><p>DOMINGO</p></td>
+                            <td class="dias"><P>LUNES</P></td>
+                            <td class="dias"><p>MARTES</p></td>
+                            <td class="dias"><p>MIÉRCOLES</p></td>
+                            <td class="dias"><P>JUEVES</P></td>
+                            <td class="dias"><p>VIERNES</p></td>
+                            <td class="dias"><p>SÁBADO</p></td>
+                        </tr>
+                        <tr class="fecha">
+                            <td><button class="btn_tbl_1"><p class="fecha_dia"></p></button></td>
+                            <td><button class="btn_tbl_1"><p class="fecha_dia" id="dia_11"></p><div class="pre_asig" id="asign_11"></div></button></td>
+                            <td><button class="btn_tbl_1"><p class="fecha_dia" id="dia_12"></p><div class="pre_asig" id="asign_12"></div></button></td>
+                            <td><button class="btn_tbl_1"><p class="fecha_dia" id="dia_13"></p><div class="pre_asig" id="asign_13"></div></button></td>
+                            <td><button class="btn_tbl_1"><p class="fecha_dia" id="dia_14"></p><div class="pre_asig" id="asign_14"></div></button></td>
+                            <td><button class="btn_tbl_1"><p class="fecha_dia" id="dia_15"></p><div class="pre_asig" id="asign_15"></div></button></td>
+                            <td><button class="btn_tbl_1"><p class="fecha_dia"></p></button></td>
+                        </tr>
+                        <tr class="fecha">
+                            <td><button class="btn_tbl_2"><p class="fecha_dia"></p></button></td>
+                            <td><button class="btn_tbl_2"><p class="fecha_dia" id="dia_21"></p><div class="pre_asig" id="asign_21"></div></button></td>
+                            <td><button class="btn_tbl_2"><p class="fecha_dia" id="dia_22"></p><div class="pre_asig" id="asign_22"></div></button></td>
+                            <td><button class="btn_tbl_2"><p class="fecha_dia" id="dia_23"></p><div class="pre_asig" id="asign_23"></div></button></td>
+                            <td><button class="btn_tbl_2"><p class="fecha_dia" id="dia_24"></p><div class="pre_asig" id="asign_24"></div></button></td>
+                            <td><button class="btn_tbl_2"><p class="fecha_dia" id="dia_25"></p><div class="pre_asig" id="asign_25"></div></button></td>
+                            <td><button class="btn_tbl_2"><p class="fecha_dia"></p></button></td>
+                        </tr>
+                        <tr class="fecha">
+                            <td><button class="btn_tbl_3"><p class="fecha_dia"></p></button></td>
+                            <td><button class="btn_tbl_3"><p class="fecha_dia" id="dia_31"></p><div class="pre_asig" id="asign_31"></div></button></td>
+                            <td><button class="btn_tbl_3"><p class="fecha_dia" id="dia_32"></p><div class="pre_asig" id="asign_32"></div></button></td>
+                            <td><button class="btn_tbl_3"><p class="fecha_dia" id="dia_33"></p><div class="pre_asig" id="asign_33"></div></button></td>
+                            <td><button class="btn_tbl_3"><p class="fecha_dia" id="dia_34"></p><div class="pre_asig" id="asign_34"></div></button></td>
+                            <td><button class="btn_tbl_3"><p class="fecha_dia" id="dia_35"></p><div class="pre_asig" id="asign_35"></div></button></td>
+                            <td><button class="btn_tbl_3"><p class="fecha_dia"></p></button></td>
+                        </tr>
+                        <tr class="fecha">
+                            <td><button class="btn_tbl_4"><p class="fecha_dia"></p></button></td>
+                            <td><button class="btn_tbl_4"><p class="fecha_dia" id="dia_41"></p><div class="pre_asig" id="asign_41"></div></button></td>
+                            <td><button class="btn_tbl_4"><p class="fecha_dia" id="dia_42"></p><div class="pre_asig" id="asign_42"></div></button></td>
+                            <td><button class="btn_tbl_4"><p class="fecha_dia" id="dia_43"></p><div class="pre_asig" id="asign_43"></div></button></td>
+                            <td><button class="btn_tbl_4"><p class="fecha_dia" id="dia_44"></p><div class="pre_asig" id="asign_44"></div></button></td>
+                            <td><button class="btn_tbl_4"><p class="fecha_dia" id="dia_45"></p><div class="pre_asig" id="asign_45"></div></button></td>
+                            <td><button class="btn_tbl_4"><p class="fecha_dia"></p></button></td>
+                        </tr>
+                        <tr class="fecha">
+                            <td><button class="btn_tbl_5"><p class="fecha_dia"></p></button></td>
+                            <td><button class="btn_tbl_5"><p class="fecha_dia" id="dia_51"></p><div class="pre_asig" id="asign_51"></div></button></td>
+                            <td><button class="btn_tbl_5"><p class="fecha_dia" id="dia_52"></p><div class="pre_asig" id="asign_52"></div></button></td>
+                            <td><button class="btn_tbl_5"><p class="fecha_dia" id="dia_53"></p><div class="pre_asig" id="asign_53"></div></button></td>
+                            <td><button class="btn_tbl_5"><p class="fecha_dia" id="dia_54"></p><div class="pre_asig" id="asign_54"></div></button></td>
+                            <td><button class="btn_tbl_5"><p class="fecha_dia" id="dia_55"></p><div class="pre_asig" id="asign_55"></div></button></td>
+                            <td><button class="btn_tbl_5"><p class="fecha_dia"></p></button></td>
+                        </tr>
+                    </table>
+                    <div class="modal-container" id="modal_container_1">
+                        <div class="modal">
+                            <div style="display: flex; width: 100%; justify-content: right;">
+                                <button id="close_1" style="font-size: 24px; background-color: white;  border: 0; cursor: pointer;">
+                                    <i class='bx bx-x-circle'></i>
+                                </button>
+                            </div>
+                            <h4 align="center" id="semana_1" style="margin-bottom: 30px; color: #0e8282;"></h4>
+                            <div class="modal_content">
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">LUNES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_11" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content_in" id="asig_modal_content_1_1">
+                                        <div class="add_asig_modal_content" onclick="addAsign(1, 1)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">MARTES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_12" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_1_2">
+                                        <div class="add_asig_modal_content" onclick="addAsign(1, 2)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">MIÉRCOLES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_13" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_1_3">
+                                        <div class="add_asig_modal_content" onclick="addAsign(1, 3)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">JUEVES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_14" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_1_4">
+                                        <div class="add_asig_modal_content" onclick="addAsign(1, 4)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">VIERNES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_15" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content_fi" id="asig_modal_content_1_5">
+                                        <div class="add_asig_modal_content" onclick="addAsign(1, 5)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-container" id="modal_container_2">
+                        <div class="modal">
+                            <div style="display: flex; width: 100%; justify-content: right;">
+                                <button id="close_2" style="font-size: 24px; background-color: white;  border: 0; cursor: pointer;">
+                                    <i class='bx bx-x-circle'></i>
+                                </button>
+                            </div>
+                            <h4 align="center" id="semana_2" style="margin-bottom: 30px; color: #0e8282;"></h4>
+                            <div class="modal_content">
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">LUNES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_21" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content_in" id="asig_modal_content_2_1">
+                                        <div class="add_asig_modal_content" onclick="addAsign(2, 1)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">MARTES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_22" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_2_2">
+                                        <div class="add_asig_modal_content" onclick="addAsign(2, 2)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">MIÉRCOLES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_23" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_2_3">
+                                        <div class="add_asig_modal_content" onclick="addAsign(2, 3)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">JUEVES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_24" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_2_4">
+                                        <div class="add_asig_modal_content" onclick="addAsign(2, 4)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">VIERNES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_25" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content_fi" id="asig_modal_content_2_5">
+                                        <div class="add_asig_modal_content" onclick="addAsign(2, 5)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-container" id="modal_container_3">
+                        <div class="modal">
+                            <div style="display: flex; width: 100%; justify-content: right;">
+                                <button id="close_3" style="font-size: 24px; background-color: white;  border: 0; cursor: pointer;">
+                                    <i class='bx bx-x-circle'></i>
+                                </button>
+                            </div>
+                            <h4 align="center" id="semana_3" style="margin-bottom: 30px; color: #0e8282;"></h4>
+                            <div class="modal_content">
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">LUNES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_31" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content_in" id="asig_modal_content_3_1">
+                                        <div class="add_asig_modal_content" onclick="addAsign(3, 1)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">MARTES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_32" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_3_2">
+                                        <div class="add_asig_modal_content" onclick="addAsign(3, 2)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">MIÉRCOLES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_33" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_3_3">
+                                        <div class="add_asig_modal_content" onclick="addAsign(3, 3)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">JUEVES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_34" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_3_4">
+                                        <div class="add_asig_modal_content" onclick="addAsign(3, 4)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">VIERNES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_35" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content_fi" id="asig_modal_content_3_5">
+                                        <div class="add_asig_modal_content" onclick="addAsign(3, 5)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-container" id="modal_container_4">
+                        <div class="modal">
+                            <div style="display: flex; width: 100%; justify-content: right;">
+                                <button id="close_4" style="font-size: 24px; background-color: white;  border: 0; cursor: pointer;">
+                                    <i class='bx bx-x-circle'></i>
+                                </button>
+                            </div>
+                            <h4 align="center" id="semana_4" style="margin-bottom: 30px; color: #0e8282;"></h4>
+                            <div class="modal_content">
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">LUNES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_41" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content_in" id="asig_modal_content_4_1">
+                                        <div class="add_asig_modal_content" onclick="addAsign(4, 1)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">MARTES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_42" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_4_2">
+                                        <div class="add_asig_modal_content" onclick="addAsign(4, 2)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">MIÉRCOLES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_43" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_4_3">
+                                        <div class="add_asig_modal_content" onclick="addAsign(4, 3)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">JUEVES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_44" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_4_4">
+                                        <div class="add_asig_modal_content" onclick="addAsign(4, 4)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">VIERNES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_45" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content_fi" id="asig_modal_content_4_5">
+                                        <div class="add_asig_modal_content" onclick="addAsign(4, 5)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-container" id="modal_container_5">
+                        <div class="modal">
+                            <div style="display: flex; width: 100%; justify-content: right;">
+                                <button id="close_5" style="font-size: 24px; background-color: white;  border: 0; cursor: pointer;">
+                                    <i class='bx bx-x-circle'></i>
+                                </button>
+                            </div>
+                            <h4 align="center" id="semana_5" style="margin-bottom: 30px; color: #0e8282;"></h4>
+                            <div class="modal_content">
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">LUNES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_51" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content_in" id="asig_modal_content_5_1">
+                                        <div class="add_asig_modal_content" onclick="addAsign(5, 1)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">MARTES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_52" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_5_2">
+                                        <div class="add_asig_modal_content" onclick="addAsign(5, 2)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">MIÉRCOLES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_53" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_5_3">
+                                        <div class="add_asig_modal_content" onclick="addAsign(5, 3)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">JUEVES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_54" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content" id="asig_modal_content_5_4">
+                                        <div class="add_asig_modal_content" onclick="addAsign(5, 4)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="dia_fecha_modal_content">
+                                        <p class="dia_modal_content">VIERNES</p>
+                                        <div style="padding: 10px">
+                                            <p id="fecha_modal_55" style="padding: 9px; border-radius: 10px; background-color: #ddf1f1;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="asig_modal_content_fi" id="asig_modal_content_5_5">
+                                        <div class="add_asig_modal_content" onclick="addAsign(5, 5)">
+                                            +
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="scripts/agenda.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.1/sql-wasm.js"></script>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

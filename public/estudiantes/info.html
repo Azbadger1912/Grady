@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatib1e" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Técnico Don Bosco</title>
+        <link rel="stylesheet" href="styles/info.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+            <!-- barra lateral -->
+            <nav class="sidebar">
+                <div class="logo-menu">
+                    <img src="assets/logo_grady.svg" class="name">
+                    <i class="bx bx-menu toggle-btn"></i>
+                </div>
+                <ul class="list">
+                    <li class="list-item">
+                        <a href="pagina_principal.html">
+                            <i class='bx bx-home-alt-2'></i>
+                            <span class="link-name" style="--i:1;">Inicio</span>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a href="mensajeria.html">
+                            <i class='bx bx-message-detail'></i>
+                            <span class="link-name" style="--i:1;">Mensajería</span>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a href="agenda.html">
+                            <i class='bx bx-calendar' ></i>
+                            <span class="link-name" style="--i:2;">Agenda</span>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a href="notas.html">
+                            <i class='bx bx-file'></i>
+                            <span class="link-name" style="--i:3;">Notas</span>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a href="info.html" style="background-color: white; color: #0e8282;">
+                            <i class='bx bx-info-circle' ></i>
+                            <span class="link-name" style="--i:4;">Información</span>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a href="ajustes.html">
+                            <i class='bx bx-cog' ></i>
+                            <span class="link-name" style="--i:5;">Configuración</span>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a onclick="cerrarSesion()">
+                            <i class='bx bx-log-out'></i>
+                            <span class="link-name" style="--i:6;">Cerrar sesión</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- barra superior -->
+            <header>
+                <div style="display: flex;; width: 100%; justify-content: center;">
+                    <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" class="logo" style="margin-right: 10px;">
+                    <h3 style="white-space: nowrap;"> Instituto Técnico Don Bosco </h3>
+                </div>
+                <h3 style="position: absolute; right: 0%;"><a href="ajustes.html" style="color: white;"><i class='bx bx-user-circle' style="padding-right: 10px;"></i></a></h3>
+            </header>
+        
+        <main>
+            <span style="padding: 4vh 0 0 10vh; font-size: 34px; color: #87e6e6; width: 100%;">INFORMACIÓN</span>
+            <p class="title2" align="center"> SOBRE NOSOTROS </p>
+            <div class="content">
+                <div class="mision" style="align-items: center;">
+                    <div class="text">
+                        <p class="subt"> Nuestra misión </p>
+                        <p style="line-height: 25px; text-align: justify;"> Dado el rápido avance de la tecnología, es esencial actualizar las plataformas
+                             educativas para mantenerse al día con las nuevas demandas y oportunidades.
+                             Presentamos Grady, una alternativa moderna e inteligente diseñada para estudiantes,
+                             padres, profesores y administradores. Grady ofrece una plataforma intuitiva y eficiente
+                             que facilita el acceso a las notas y agendas de manera simultánea.
+                             Grady no solo simplifica la gestión académica, sino que también promueve una
+                             mayor interacción y colaboración entre todos los miembros de la comunidad educativa.
+                             Con su interfaz amigable y funcionalidades avanzadas, Grady permite un seguimiento
+                             detallado del rendimiento académico, la planificación de actividades y la comunicación
+                             efectiva, todo en un solo lugar. Al utilizar Grady, las instituciones
+                             educativas pueden optimizar sus procesos, reducir la carga administrativa y
+                             centrarse en lo que realmente importa: la educación de calidad. Grady es más
+                             que una herramienta; es un aliado en el camino hacia la excelencia educativa.
+                        </p>
+                    </div>
+                    <img src="assets/foto_mision.png" style="width: 300px; margin: 0 20px;">
+                </div>
+                <div class="vision" style="align-items: center;">
+                    <img src="assets/foto_nosotros.png" style="width: 300px; margin: 0 20px;">
+                    <div class="text">
+                        <div style=" display: flex; justify-content: flex-end;">
+                            <p class="subt"> Nuestra visión </p>
+                        </div>
+                        <p style="text-align: justify; line-height: 25px;">Nuestro objetivo es convertir a Grady en el nuevo estándar de las plataformas
+                             educativas, siendo la primera opción tanto para colegios como para universidades.
+                             Queremos inspirar a las futuras generaciones a no conformarse con lo que tienen
+                             y a seguir innovando continuamente. Con Grady, aspiramos a transformar la manera
+                             en que se gestiona la educación, ofreciendo una herramienta que no solo satisface
+                             las necesidades actuales, sino que también anticipa las del futuro. Queremos que
+                             Grady sea sinónimo de innovación y excelencia, alentando a estudiantes, profesores
+                             y administradores a explorar nuevas formas de aprendizaje y enseñanza. Al establecer
+                             a Grady como el referente en plataformas educativas, buscamos fomentar una cultura
+                             de mejora continua y creatividad. Queremos que cada usuario de Grady se sienta
+                             empoderado para alcanzar su máximo potencial y contribuir al avance del conocimiento
+                             y la educación en su conjunto.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="scripts/pagina_principal.js"></script>
+    </body>
+</html>

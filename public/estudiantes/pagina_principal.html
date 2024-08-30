@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Técnico Don Bosco</title>
+    <link rel="stylesheet" href="styles/main_page.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <!-- barra lateral -->
+    <nav class="sidebar">
+        <div class="logo-menu">
+            <img src="assets/logo_grady.svg" class="name">
+            <i class="bx bx-menu toggle-btn"></i>
+        </div>
+        <ul class="list">
+            <li class="list-item">
+                <a href="pagina_principal.html" style="background-color: white; color: #0e8282;">
+                    <i class='bx bx-home-alt-2'></i>
+                    <span class="link-name" style="--i:1;">Inicio</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="mensajeria.html">
+                    <i class='bx bx-message-detail'></i>
+                    <span class="link-name" style="--i:1;">Mensajería</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="agenda.html">
+                    <i class='bx bx-calendar' ></i>
+                    <span class="link-name" style="--i:2;">Agenda</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="notas.html">
+                    <i class='bx bx-file'></i>
+                    <span class="link-name" style="--i:3;">Notas</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="info.html">
+                    <i class='bx bx-info-circle' ></i>
+                    <span class="link-name" style="--i:4;">Información</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="ajustes.html">
+                    <i class='bx bx-cog' ></i>
+                    <span class="link-name" style="--i:5;">Configuración</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a onclick="cerrarSesion()">
+                    <i class='bx bx-log-out'></i>
+                    <span class="link-name" style="--i:6;">Cerrar sesión</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+   
+    
+    <!-- barra superior -->
+    <header>
+        <div style="display: flex;; width: 100%; justify-content: center;">
+            <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" class="logo" style="margin-right: 10px;">
+            <h3 style="white-space: nowrap;"> Instituto Técnico Don Bosco </h3>
+        </div>
+        <h3 style="position: absolute; right: 0%;"><a href="ajustes.html" style="color: white;"><i class='bx bx-user-circle' style="padding-right: 10px;"></i></a></h3>
+    </header>
+    
+    <!-- contenido principal -->
+    <div class="main-content">
+        <table class="content">
+            <tr>
+                <td rowspan="2">
+                    <div class="user">
+                        <div class="profile">
+                            <i class='bx bxs-user-circle'></i>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <p style="color: rgb(203, 239, 239);"><b>Nombre</b></p>
+                            <p style="color: white; margin-bottom: 10px;" id="nom_ape">Fabricio Moreno</p>
+                            <p style="color: rgb(203, 239, 239);"><b>Curso</b></p>
+                            <p style="color: white; margin-bottom: 10px" id="grado">12 "C"</p>
+                            <p style="color: rgb(203, 239, 239);"><b>Consejero</b></p>
+                            <p style="color: white; margin-bottom: 10px" id="conse">Edwin Tobar</p>
+                            <p style="color: rgb(203, 239, 239);"><b>Cédula</b></p>
+                            <p style="color: white" id="ced">C02524871</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="promedio">
+                        <div class="panel-title" style="cursor: pointer;">
+                            <a href="notas.html" style="text-decoration: none; color: white;"><h2>PROMEDIOS GENERALES</h2></a>
+                        </div>
+                        <div class="panel-info" style="line-height: 40px;">
+                            <p id="promedio_pri">1er Trimestre: [<a href="notas.html" class="ver_bol">ver boletín</a>]</p>
+                            <hr style="width: 80%;">
+                            <p id="promedio_seg">2do Trimestre: [0.00]</p>
+                            <hr style="width: 80%;">
+                            <p id="promedio_ter">3er Trimestre: [...]</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="saldo">
+                        <div class="panel-title">
+                            <h2>ESTATUS FINANCIERO</h2>
+                        </div>
+                        <div class="panel-info" style="line-height: 32px;">
+                            <p style="font-size: 26px;color: #15b3b3;">SALDO</p>
+                            <p style="font-size: 24px;">0.00 $</p>
+                            <p style="font-size: 14px;">Está paz y salvo</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="actividades">
+                        <div class="panel-title" style="cursor: pointer;">
+                            <a href="agenda.html" style="text-decoration: none; color: white;"><h2>ACTIVIDADES PRÓXIMAS</h2></a>
+                        </div>
+                        <div class="panel-info">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="width: 120px; text-align: center; vertical-align: middle;">
+                                        <div class="boton">
+                                            <a class="up-arrow">
+                                                <i class='bx bx-chevron-up'></i>
+                                            </a>
+                                            <div class="fechas_agen" style="display: block;">
+                                                <p style="text-align: center;" id="dia_boton">
+                                                </p>
+                                                <p style="text-align: center;">
+                                                </p>
+                                            </div>
+                                            <a class="down-arrow">
+                                                <i class='bx bx-chevron-down'></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: left; line-height: 30px;">
+                                        <p>
+                                            <p id="slot_num1" style="color: white;">-</p>
+                                            <hr style="display: flex; width: 90%;">
+                                            <p id="slot_num2" style="color: white;">-</p>
+                                            <hr style="display: flex; width: 90%;">
+                                            <p id="slot_num3" style="color: white;">-</p>
+                                            <hr style="display: flex; width: 90%;">
+                                            <p id="slot_num4" style="color: white;">-</p>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>    
+    </div>
+    <script src="scripts/pagina_principal.js"></script>
+</body>
+</html>

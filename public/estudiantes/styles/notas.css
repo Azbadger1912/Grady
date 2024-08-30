@@ -1,0 +1,495 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lexend Exa', sans-serif;
+}
+
+/* Personalización del scrollbar */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: #ddf1f1;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #8ce8e8;
+    border-radius: 10px;
+    border: 3px solid #ddf1f1; /* Coloca un borde igual al color del track */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color */
+}
+
+body::-webkit-scrollbar-thumb:active {
+    background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+}
+
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
+.sidebar{ 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 62px;
+    height: 100%;
+    background: #0e8282;
+    padding: 6px 14px;
+    transition: .5s;
+    z-index: 10;
+}
+
+.sidebar.active{
+    width: 280px;
+}
+
+.sidebar .logo-menu{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+}
+
+.sidebar .logo-menu .name{
+    margin-left: 5px;
+    height: 50px;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0;
+    transition: .3s;
+}
+
+.sidebar.active .logo-menu .name{
+    opacity: 1;
+    transition-delay: .2s;
+}
+
+.sidebar .logo-menu .toggle-btn{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.sidebar.active .logo-menu .toggle-btn{
+    left: 85%;
+}
+
+.sidebar .list{
+    margin-top: 10px;
+}
+
+.list .list-item{
+    list-style: none;
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+.list .list-item a{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: .5s;
+}
+
+.list .list-item a i{
+    padding: 0 5px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.list .list-item span{
+font-size: 16px;
+}
+
+.sidebar .link-name{
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.sidebar.active .link-name{
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: calc(.1s * var(--i));
+}
+
+.list .list-item.active a,
+.list .list-item a:hover{
+    background: #4d8787;
+} 
+
+header{
+    display: flex;
+    background-color: #8ce8e8;
+    font-size: 24px;
+    color:#ffffff;
+    height: 60px;
+    min-width: 800px;
+    margin-left: 62px;
+    align-items: center;
+    text-align: right;
+}
+
+.logo{
+    width: 40px;
+    align-items: center;
+}
+
+.main-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 62px;
+    min-width: 1000px;
+    justify-content: center;
+}
+
+.modal-container {
+    display: none;
+    background-color: rgba(0,0,0,0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.modal{
+    background-color: white;
+    width: 60%;
+    min-width: 600px;
+    padding: 30px 50px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    height: 200vh;
+    border-radius: 10px;
+    max-height: 80%;
+}
+
+.modal_content {
+    height: 70%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 16;
+}
+
+.show{
+    pointer-events: auto;
+    display: flex;
+}
+
+.menu{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    width: 100%;
+}
+
+.botones{
+    background-color: white;
+    width: 170px;
+    font-size: 18px;
+    color: #16c4c4;
+    padding: 10px;
+    border-radius: 22px;
+    border: 3px solid #16c4c4;
+    margin: 5px;
+    cursor: pointer;
+}
+
+
+.titulos{
+    margin: 40px 0;
+    font-size: 38px;
+    color: #0e8282;
+}
+
+.notas_content{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+}
+
+.conducta_content{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+}
+
+.bol_pro_content{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+}
+
+.select{
+    display: flex;
+}
+
+.select_bot{
+    background-color: #16c4c4;
+    color: white;
+}
+
+.table_notas_dia{
+    max-width: 90%;
+    min-width: 70%;
+    margin-bottom: 15vh;
+    table-layout: fixed;
+    opacity: 0;
+    transition: opacity 0.05s ease, max-height 0.05s ease;
+}
+
+.tit_not_dia{
+    background-color: #0e8282;
+    color: white;
+    height: 50px;
+    min-width: 50px;
+}
+
+.materias{
+    background-color: #80dddd;
+    color: white;
+    font-size: 14px;
+}
+
+.mat_bot{
+    background-color: #80dddd;
+    color: white;
+    font-size: 14px;
+    border: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+}
+
+.notas_dia{
+    height: 50px;
+    color: white;
+}
+
+.promedio_mat_0{
+    background-color: #ddf1f1;
+}
+
+.promedio_mat_1{
+    background-color: #64C23D;
+}
+
+.promedio_mat_2{
+    background-color: #B0D8A3;
+}
+
+.promedio_mat_3{
+    background-color: #EFCC11;
+}
+
+.promedio_mat_4{
+    background-color: #E68A1D;
+}
+
+.promedio_mat_5{
+    background-color: #CF1319;
+}
+
+.not_mat{
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+.not_mat td{
+    height: 50px;
+}
+
+.not_mat .tit_not td{
+    font-size: 14px;
+    color: white;
+    background-color: #0e8282;
+} 
+
+.not_mat .asig_tit{
+    background-color: #ddf1f1;
+} 
+
+.not_mat .fecha{
+    background-color: #ddf1f1;
+    font-size: 13px;
+}
+
+.not_mat .nota{
+    font-size: 14px;
+    color: white;
+}
+
+.not_mat .tip_prom{
+    background-color: white;
+    border: #0e8282 2px solid;
+    font-size: 14px;
+    color: #0e8282;
+} 
+
+.not_mat .prom{
+    font-size: 14px;
+    color: white;
+    background-color: #0e8282;
+} 
+
+.cond_tab{
+    width: 70%;
+}
+
+.cond_tab td{
+    height: 40px;
+}
+
+.cond_tab .tit_cond td{
+    font-size: 14px;
+    color: white;
+    background-color: #0e8282;
+}
+
+.cond_tab .cont_1{
+    background-color: #80dddd;
+    color: white ;
+    font-size: 14px;
+}
+
+.cond_tab .cont_2{
+    background-color: #ddf1f1;
+    color: black ;
+    font-size: 14px;
+}
+
+.tbl_bol_pro td{
+    height: 50px;
+    width: 40px;
+    font-size: 16px;
+    background-color: #ddf1f1;
+    color: black;
+}
+
+.tbl_bol_pro .tit_1{
+    background-color: #0e8282;
+    color: white;
+    font-size: 14px;
+}
+
+.tbl_bol_pro .tit_2{
+    background-color: white;
+    color: #0e8282;
+    border: #0e8282 2px solid;
+    font-size: 14px;
+}
+
+.tbl_bol_pro .promedio_mat_1{
+    background-color: #64C23D;
+    color: white;
+}
+
+.tbl_bol_pro .promedio_mat_2{
+    background-color: #B0D8A3;
+    color: white;
+}
+
+.tbl_bol_pro .promedio_mat_3{
+    background-color: #EFCC11;
+    color: white;
+}
+
+.tbl_bol_pro .promedio_mat_4{
+    background-color: #E68A1D;
+    color: white;
+}
+
+.tbl_bol_pro .promedio_mat_5{
+    background-color: #CF1319;
+    color: white;
+}
+
+.selec{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cmb{
+    position: relative;
+    z-index: 3;    
+}
+
+.cmb select{
+    appearance: none;
+    border: 2px solid #0e8282;
+    border-radius: 20px;
+    color: #16c4c4;
+    margin-left: 10px;
+    padding-left: 9px;
+    height: 30px;
+    width: 190px;    
+    position: relative;
+    z-index: 5;
+}
+
+.cmb i{
+    border-radius: 20px;
+    color: #16c4c4;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30px;
+    pointer-events: none;
+    z-index: 6;
+}
+
+.dia_trim{
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.cond_trim{
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+    margin-left: 20%;
+}
+
+#observaciones li{
+    margin-bottom: 10px;
+}

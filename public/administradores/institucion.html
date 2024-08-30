@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Técnico Don Bosco</title>
+        <link rel="stylesheet" href="styles/institucion.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel='stylesheet'>
+    </head>
+    <body>
+        <!-- barra lateral -->
+        <nav class="sidebar">
+            <div class="logo-menu">
+                <img src="assets/logo_grady.svg" class="name">
+                <i class="bx bx-menu toggle-btn"></i>
+            </div>
+            <ul class="list">
+                <li class="list-item">
+                    <a href="pagina_principal.html">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span class="link-name" style="--i:1;">Inicio</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="mensajeria.html">
+                        <i class='bx bx-message-detail'></i>
+                        <span class="link-name" style="--i:1;">Mensajería</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="institucion.html" style="background-color: white; color: #0e8282;">
+                        <i class='bx bxs-graduation'></i>
+                        <span class="link-name" style="--i:2;">Institución</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="profesores.html">
+                        <i class='bx bx-chalkboard'></i>
+                        <span class="link-name" style="--i:3;">Profesores</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="estudiantes.html">
+                        <i class='bx bx-file'></i>
+                        <span class="link-name" style="--i:4;">Estudiantes</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="info.html">
+                        <i class='bx bx-info-circle' ></i>
+                        <span class="link-name" style="--i:4;">Información</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="ajustes.html">
+                        <i class='bx bx-cog' ></i>
+                        <span class="link-name" style="--i:5;">Configuración</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a onclick="cerrarSesion()">
+                        <i class='bx bx-log-out'></i>
+                        <span class="link-name" style="--i:6;">Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+       
+        
+        <!-- barra superior -->
+        <header>
+            <div style="display: flex;; width: 100%; justify-content: center;">
+                <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" class="logo" style="margin-right: 10px;">
+                <h3 style="white-space: nowrap;"> Instituto Técnico Don Bosco </h3>
+            </div>
+            <h3 style="position: absolute; right: 0%;"><a href="ajustes.html" style="color: white;"><i class='bx bx-user-circle' style="padding-right: 10px;"></i></a></h3>
+        </header>
+    <main>
+        <span id="title">INSTITUCIÓN</span>    
+        <div class="main-content">
+            <div class="curmat">
+                <span class="subtitle">CURSOS</span>
+                <textarea name="" id="" class="input"></textarea>
+                <button class="add">AÑADIR</button>
+                <ul id="cursos_list">
+                    <li class="sortable-item">1A<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">2A<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">3A<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">4A<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">4B<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">5A<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">5B<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">6A<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">6B<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">7A<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">7B<span class="drag-handle">⋮⋮⋮</span></li>
+                </ul>
+            </div>
+            <div class="curmat">
+                <span class="subtitle">MATERIAS</span>
+                <textarea name="" id="" class="input"></textarea>
+                <button class="add">AÑADIR</button>
+                <ul id="materias_list">
+                    <li class="sortable-item">Español<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Inglés<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Ciencias Sociales<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Informática<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Ciencias Naturales<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Educación Física<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Química<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Cívica<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Geografía<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Historia<span class="drag-handle">⋮⋮⋮</span></li>
+                    <li class="sortable-item">Filosofía<span class="drag-handle">⋮⋮⋮</span></li>
+                </ul>
+            </div> 
+        </div>
+    </main>
+    <script src="scripts/sidebar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="scripts/institucion.js"></script>
+</body>
+</html> 

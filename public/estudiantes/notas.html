@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Técnico Don Bosco</title>
+        <link rel="stylesheet" href="styles/notas.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <!-- barra lateral -->
+        <nav class="sidebar">
+            <div class="logo-menu">
+                <img src="assets/logo_grady.svg" class="name">
+                <i class="bx bx-menu toggle-btn"></i>
+            </div>
+            <ul class="list">
+                <li class="list-item">
+                    <a href="pagina_principal.html">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span class="link-name" style="--i:1;">Inicio</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="mensajeria.html">
+                        <i class='bx bx-message-detail'></i>
+                        <span class="link-name" style="--i:1;">Mensajería</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="agenda.html">
+                        <i class='bx bx-calendar' ></i>
+                        <span class="link-name" style="--i:2;">Agenda</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="notas.html" style="background-color: white; color: #0e8282;">
+                        <i class='bx bx-file'></i>
+                        <span class="link-name" style="--i:3;">Notas</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="info.html">
+                        <i class='bx bx-info-circle' ></i>
+                        <span class="link-name" style="--i:4;">Información</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="ajustes.html">
+                        <i class='bx bx-cog' ></i>
+                        <span class="link-name" style="--i:5;">Configuración</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a onclick="cerrarSesion()">
+                        <i class='bx bx-log-out'></i>
+                        <span class="link-name" style="--i:6;">Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- barra superior -->
+        <header>
+            <div style="display: flex;; width: 100%; justify-content: center;">
+                <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" class="logo" style="margin-right: 10px;">
+                <h3 style="white-space: nowrap;"> Instituto Técnico Don Bosco </h3>
+            </div>
+            <h3 style="position: absolute; right: 0%;"><a href="ajustes.html" style="color: white;"><i class='bx bx-user-circle' style="padding-right: 10px;"></i></a></h3>
+        </header>
+        
+        <!-- contenido principal -->
+        <div class="main-content" >
+            <span style="padding: 4vh 0 0 10vh; font-size: 34px; color: #87e6e6; width: 100%;">NOTAS</span>
+            <div style="width: 100%;">
+                <div class="menu">
+                    <button class="botones" id="boton_not_dia" onclick="selec_vent('not_dia_cont', 'boton_not_dia')">
+                        N. Diarias
+                     </button>
+                    <button class="botones" id="boton_conducta" onclick="selec_vent('cond_cont', 'boton_conducta')">
+                        <p>Conducta</p>
+                    </button>
+                    <button class="botones" id="boton_bol_pro" onclick="selec_vent('bol_pro_cont', 'boton_bol_pro')">
+                        <p>Boletín P.</p>
+                    </button>
+                </div>
+
+                <div class="notas_content" id="not_dia_cont">
+                    <div class="dia_trim">
+                        <p class="titulos">NOTAS DIARIAS</p>
+                        <div class="selec">
+                            TRIMESTRE
+                            <div class="cmb">
+                                <select id="trimestre_not">
+                                    <option value="1">Primer trimestre</option>
+                                    <option value="2">Segundo trimestre</option>
+                                    <option value="3">Tercer trimestre</option>
+                                </select>
+                                <i class='bx bx-chevron-down'></i>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table_notas_dia" id="tabla_notas">
+                        <tr>
+                            <td  class="tit_not_dia" style="min-width: 180px; max-width: 300px;">MATERIA</td>
+                            <td  class="tit_not_dia">N1</td>
+                            <td  class="tit_not_dia" style="min-width: 100px;">PROM</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="conducta_content" id="cond_cont">
+                    <div class="cond_trim">
+                        <p class="titulos">CONDUCTA</p>
+                        <div class="selec">
+                            TRIMESTRE
+                            <div class="cmb">
+                                <select id="trimestre_cond">
+                                    <option value="1" onclick="cambiarTrim(1)">Primer trimestre</option>
+                                    <option value="2" onclick="cambiarTrim(2)">Segundo trimestre</option>
+                                    <option value="3" onclick="cambiarTrim(3)">Tercer trimestre</option>
+                                </select>
+                                <i class='bx bx-chevron-down'></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; width: 90%; margin-left: 5%; margin-bottom: 10vh;">
+                        <table class="cond_tab" id="con_table">
+                            <tr class="tit_cond">
+                                <td style="width: 35%;">MATERIA</td>
+                                <td style="width: 35%;">PROFESOR</td>
+                                <td style="width: 15%; font-size: 11px;">AUSENCIAS</td>
+                                <td style="width: 15%; font-size: 11px;">TARDANZAS</td>
+                            </tr>
+                        </table>
+                        <div style="margin-left: 5%; text-align: left;">
+                            <p style="font-size: 30px; color: #16c4c4;">Observaciones</p>
+                            <ul style="font-size: 14px; color: black; margin-top: 5px;" id="observaciones"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bol_pro_content" id="bol_pro_cont">
+                    <p class="titulos">BOLETÍN PROYECTADO</p>
+                    <div style="width: 80%; margin-left: 10%;">
+                        <div style="width: 100%; display: flex; position: relative; justify-content: center; z-index: 5;">
+                            <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" style="position: absolute; left: 0%; width: 60px; z-index: 6;">
+                            <div>
+                                <p style="font-size: 26PX; color: black;">
+                                    INSTITUTO TÉCNICO DON BOSCO
+                                </p>
+                                <p style="font-size: 16px; color: black;">
+                                    BOLETÍN PROYECTADO
+                                </p>
+                            </div>
+                        </div>
+                        <div style="width: 100%; font-size: 16px; display: flex; margin: 20px 0;">
+                            <div style="text-align: left;">
+                                <p id="cedul_bol_pro"></p>
+                                <p id="nomb_bol_pro"><b>Nombre:</b> Fabricio José</p>
+                                <p id="apell_bol_pro"><b>Apellido Paterno:</b> Moreno Aráuz</p>
+                            </div>
+                            <div style="margin-left: 30%; text-align: left;">
+                                <p id="ahno_bol_pro"><b>Año:</b> 2024</p>
+                                <p id="grado_bol_pro"><b>Grupo:</b> 12C</p>
+                            </div>
+                        </div>
+                        <table class="tbl_bol_pro" style="width: 100%; min-width: 800px; margin-bottom: 10vh;" id="tabla_bol_pro">
+                            <tr>
+                                <td class="tit_1" style="width: 110px;">MATERIA</td>
+                                <td class="tit_1">I</td>
+                                <td class="tit_1">II</td>
+                                <td class="tit_1">III</td>
+                                <td class="tit_1">PROM</td>
+                                <td class="tit_2">AI</td>         
+                                <td class="tit_2">TI</td>   
+                                <td class="tit_2">AII</td>     
+                                <td class="tit_2">TII</td>                   
+                                <td class="tit_2">AIII</td>     
+                                <td class="tit_2">TIII</td>       
+                                <td class="tit_1" style="width: 110px;">APROBADO</td>                 
+                            </tr>
+                            <tr>
+                                <td class="tit_1">PROMEDIO DEL PERIODO</td>
+                                <td class="promedio_mat_0" id="bolPromTot1">-</td>
+                                <td class="promedio_mat_0" id="bolPromTot2">-</td>
+                                <td class="promedio_mat_0" id="bolPromTot3">-</td>
+                                <td class="promedio_mat_0" id="bolPromTot4">-</td>
+                            </tr>
+                        </table>
+                        <div style="width: 100%; padding: 5px; background-color: #0e8282; border-radius: 30px; margin-bottom: 10px;">
+                            <p style="font-size: 14px; color: white;">ESTE BOLETÍN NO TIENE VALIDEZ SIN LOS SELLOS Y FIRMAS OFICIALES</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="scripts/notas.js"></script>
+    </body>
+</html>

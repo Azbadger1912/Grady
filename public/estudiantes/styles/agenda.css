@@ -1,0 +1,509 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lexend Exa', sans-serif;
+    transition: 0.3s;
+}
+
+/* Personalización del scrollbar */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: #ddf1f1;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #8ce8e8;
+    border-radius: 10px;
+    border: 3px solid #ddf1f1; /* Coloca un borde igual al color del track */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color */
+}
+
+body::-webkit-scrollbar-thumb:active {
+    background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+}
+
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
+.sidebar{ 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 62px;
+    height: 100%;
+    background: #0e8282;
+    padding: 6px 14px;
+    transition: .5s;
+}
+
+.sidebar.active{
+    width: 280px;
+}
+
+.sidebar .logo-menu{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+}
+
+.sidebar .logo-menu .name{
+    margin-left: 5px;
+    height: 50px;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0;
+    transition: .3s;
+}
+
+.sidebar.active .logo-menu .name{
+    opacity: 1;
+    transition-delay: .2s;
+}
+
+.sidebar .logo-menu .toggle-btn{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.sidebar.active .logo-menu .toggle-btn{
+    left: 85%;
+}
+
+.sidebar .list{
+    margin-top: 10px;
+}
+
+.list .list-item{
+    list-style: none;
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+.list .list-item a{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: .5s;
+}
+
+.list .list-item a i{
+    padding: 0 5px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.list .list-item span{
+font-size: 16px;
+}
+
+.sidebar .link-name{
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.sidebar.active .link-name{
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: calc(.1s * var(--i));
+}
+
+.list .list-item.active a,
+.list .list-item a:hover{
+    background: #4d8787;
+} 
+
+header{
+    display: flex;
+    background-color: #8ce8e8;
+    font-size: 24px;
+    color:#ffffff;
+    height: 60px;
+    min-width: 800px;
+    margin-left: 62px;
+    align-items: center;
+    text-align: right;
+}
+
+.logo{
+    width: 40px;
+    align-items: center;
+}
+
+.main-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 62px;
+    justify-content: center;
+    min-width: 1000px;
+}
+
+.main-content::-webkit-scrollbar {
+    width: 12px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background-color: #8ce8e8;
+    border-radius: 10px;
+    border: 3px solid #fff; /* Coloca un borde igual al color del track */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color */
+}
+
+.main-content::-webkit-scrollbar-thumb:active {
+    background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+}
+
+.main-content::-webkit-scrollbar-button {
+    display: none;
+}
+
+.main-content .calendar .content{
+    width: 90%;
+    min-width: 700px;
+    margin-left: 5%;
+    margin-right: 0;
+    margin-bottom: 15vh;
+    table-layout: fixed;
+}
+
+.main-content .calendar .content .dias{
+    min-width: 100px;
+    text-align: center;
+}
+
+.main-content .calendar .content .fecha td{
+    border-radius: 10px;
+    border: 4px solid white;
+    background-color: #ddf1f1;
+    text-align: center;
+    padding-top: 10px;
+    vertical-align: top;
+    height: 180px;
+    max-height: 110px;
+    overflow: hidden;
+}
+
+.modal-container {
+    display: none;
+    background-color: rgba(0,0,0,0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+
+}
+
+.modal{
+    background-color: white;
+    width: 85%;
+    min-width: 800px;
+    padding: 30px 50px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    height: 200vh;
+    border-radius: 10px;
+    max-height: 80%;
+}
+
+.modal_content {
+    padding-right: 1%;
+    height: 85%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal_content::-webkit-scrollbar {
+    width: 12px;
+}
+
+.modal_content::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.modal_content::-webkit-scrollbar-thumb {
+    background-color: #8ce8e8;
+    border-radius: 10px;
+    border: 3px solid #fff; /* Coloca un borde igual al color del track */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color */
+}
+
+.modal_content::-webkit-scrollbar-thumb:active {
+    background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+}
+
+.modal_content::-webkit-scrollbar-button {
+    display: none;
+}
+
+.btn_tbl_1, .btn_tbl_2, .btn_tbl_3, .btn_tbl_4, .btn_tbl_5{
+    background-color: #ddf1f1;
+    border: 0;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.show{
+    pointer-events: auto;
+    display: flex;
+}
+
+.dia_fecha_modal_content{
+    width: 170px;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.dia_modal_content{
+    font-size: 20px;
+    color: #16c4c4;
+}
+
+.asig_modal_content_in{
+    background-color: #ddf1f1;
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 3%;
+    margin-left: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.asig_modal_content{
+    background-color: #ddf1f1;
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 3%;
+    margin-left: 10px;
+}
+
+.asig_modal_content_fi{
+    background-color: #ddf1f1;
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 0;
+    margin-left: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.one_asig_modal_content{
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: 180px;
+    align-items: center;
+    min-height: 130px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.adjun_boton{
+    color: white;
+    width: 180px;
+    background-color: #0e8282;
+    height: 50px;
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.adjun_boton:hover{
+    background-color: #16c4c4;
+}
+
+.asign_content{
+    margin-left: 50px;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.asign_tit_form{
+    font-size: 20px;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+    max-height: 40px;
+    background-color: #0588c8;
+}
+
+.asign_tit_sum{
+    font-size: 20px;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+    max-height: 40px;
+    background-color: #3ccd00;
+}
+
+.mat_tem {
+    min-height: 130px;
+    width: 182px;
+    height: 100% ;
+    position: relative;
+}
+
+.mat_tem_1{
+    height: 104px;
+    overflow: auto;
+}
+
+.mat_tem_1::-webkit-scrollbar {
+    width: 10px; height: 10px;
+    
+}
+
+.mat_tem_1::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.mat_tem_1::-webkit-scrollbar-thumb {
+    background-color: #8ce8e8;
+    border-radius: 10px;
+    border: 3px solid #fff; /* Coloca un borde igual al color del track */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color */
+}
+
+.mat_tem_1::-webkit-scrollbar-thumb:active {
+    background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+}
+
+.mat_tem_1::-webkit-scrollbar-button {
+    display: none;
+}
+
+.font_mat{
+    font-size: 18px;
+    color: #16c4c4;
+    margin-bottom: 10px;
+}
+
+.ind_des{
+    font-size: 12px;
+    margin-left: 5%;
+    max-width: 30vw;
+    height: 110px;
+    overflow: auto;
+}
+
+.ind_des::-webkit-scrollbar {
+    width: 10px; height: 10px;
+}
+
+.ind_des::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.ind_des::-webkit-scrollbar-thumb {
+    background-color: #8ce8e8;
+    border-radius: 10px;
+    border: 3px solid #fff; /* Coloca un borde igual al color del track */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color */
+}
+
+.ind_des::-webkit-scrollbar-thumb:active {
+    background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+}
+
+.ind_des::-webkit-scrollbar-button {
+    display: none;
+}
+
+.ind_prin{
+    font-size: 14px;
+    width: 17vw;
+    height: 110px;
+    overflow: auto;
+}
+
+.ind_prin::-webkit-scrollbar {
+    width: 10px; height: 10px;
+}
+
+.ind_prin::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.ind_prin::-webkit-scrollbar-thumb {
+    background-color: #8ce8e8;
+    border-radius: 10px;
+    border: 3px solid #fff; /* Coloca un borde igual al color del track */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color */
+}
+
+.ind_prin::-webkit-scrollbar-thumb:active {
+    background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+}
+
+.ind_prin::-webkit-scrollbar-button {
+    display: none;
+}
+
+.pre_asig{
+    width: 100%;
+    font-size: 10px;
+    max-height: 154px;
+    overflow: hidden;
+    color: #0e8282;
+}
+
+.pre_asig .sum{
+    font-size: 10px;
+    color: #3ccd00;
+    padding: 5px;
+    background-color: white;
+    margin: 0 5px;
+    border-radius: 11px;
+}
+
+.pre_asig .form{
+    font-size: 10px;
+    color: #0588c8;
+    padding: 5px;
+    background-color: white;
+    margin: 0 5px;
+    border-radius: 11px;
+}
+

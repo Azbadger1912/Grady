@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Personalización del scrollbar */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: #ddf1f1;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #8ce8e8;
+    border-radius: 10px;
+    border: 3px solid #ddf1f1; /* Coloca un borde igual al color del track */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color */
+}
+
+body::-webkit-scrollbar-thumb:active {
+    background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+}
+
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
+body {
+    background-color: #0E7E7E; /* Color de fondo */
+    background-image: radial-gradient(#1e9494 12%, transparent 20%);
+    background-size: 30px 30px; /* Tamaño de cada "cuadrado" de puntos */
+}
+
+.bot_tit_1, .bot_tit_2{
+    text-decoration: none;
+    padding: 10px 26px;
+    border-radius: 40px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    transition: background-color 0.3s ease;
+}
+
+.bot_tit_1{
+    color: #0E7E7E;
+    background-color: white;
+}
+
+.bot_tit_1:hover{
+    background-color: #c4e9e9;
+}
+
+.bot_tit_2{
+    font-size: 20px;
+    padding: 15px 45px;
+    color: white;
+    background-color: #16C4C4;
+}
+
+.div-onda-svg {
+    width: 120%;
+    height: 200px;
+    position: relative;
+    margin: 50px auto;
+    overflow: hidden;
+    animation: moveWave 2s linear infinite; 
+}
+
+.div-onda-svg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,100 Q36,140 72,100 T144,100 T216,100 T288,100 T360,100 T432,100 T504,100 T576,100 T648,100 T720,100 T792,100 T864,100 T936,100 T1008,100 T1080,100 T1152,100 T1224,100 T1296,100 T1368,100 T1440,100 V320 H0 Z"></path></svg>') no-repeat;
+    background-size: cover;
+    z-index: 30;
+    overflow: hidden;
+}
+
+.mis_vis{
+    display: flex;
+    width: 50%;
+    background-color: #16C4C4;
+    text-align: justify;
+    border: #16C4C4 solid 12px;
+    padding: 1px;
+    border-radius: 15px;
+}
+
+@keyframes moveWave {
+    0% { 
+        transform: translateX(0); 
+    } 
+    100% { 
+        transform: translateX(-10%); 
+    } 
+}

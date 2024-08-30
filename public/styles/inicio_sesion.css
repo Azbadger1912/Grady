@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lexend Exa', sans-serif;
+}
+
+/* Personalización del scrollbar */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: #ddf1f1;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #8ce8e8;
+    border-radius: 10px;
+    border: 3px solid #ddf1f1; /* Coloca un borde igual al color del track */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color */
+}
+
+body::-webkit-scrollbar-thumb:active {
+    background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+}
+
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
+.frm_1{
+    min-height: 300px;
+    min-width: 465px;
+    background-color: #DDF1F1;
+    border: #16C4C4 10px solid;
+    height: 40%;
+    width: 30%;
+    border-radius: 20px;
+    padding: 2%;
+}
+
+.tit{
+    font-size: 18px;
+    color: #0e8282;
+    margin-bottom: 1%;
+}
+
+.txt_1{
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    border: #0e8282 2px solid;
+    margin-bottom: 2%;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.btn_1{
+    font-size: 14;
+    border: 0;
+    background-color: #16C4C4;
+    color: white;
+    border-radius: 20px;
+    height: 40px;
+    padding: 0 50px;
+    margin-top: 10px;
+    cursor: pointer;
+}

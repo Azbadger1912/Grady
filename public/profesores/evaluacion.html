@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Técnico Don Bosco</title>
+        <link rel="stylesheet" href="styles/evaluacion.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel='stylesheet'>
+    </head>
+    <body>
+        <!-- barra lateral -->
+        <nav class="sidebar">
+            <div class="logo-menu">
+                <img src="assets/logo_grady.svg" class="name">
+                <i class="bx bx-menu toggle-btn"></i>
+            </div>
+            <ul class="list">
+                <li class="list-item">
+                    <a href="pagina_principal.html">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span class="link-name" style="--i:1;">Inicio</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="mensajeria.html">
+                        <i class='bx bx-message-detail'></i>
+                        <span class="link-name" style="--i:1;">Mensajería</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="agenda.html">
+                        <i class='bx bx-calendar' ></i>
+                        <span class="link-name" style="--i:2;">Agenda</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="evaluacion.html" style="background-color: white; color: #0e8282;">
+                        <i class='bx bx-file'></i>
+                        <span class="link-name" style="--i:3;">Evaluaciones</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="consejeria.html">
+                        <i class='bx bx-book-reader'></i>
+                        <span class="link-name" style="--i:4;">Consejería</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="info.html">
+                        <i class='bx bx-info-circle' ></i>
+                        <span class="link-name" style="--i:5;">Información</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="ajustes.html">
+                        <i class='bx bx-cog' ></i>
+                        <span class="link-name" style="--i:6;">Configuración</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a onclick="cerrarSesion()">
+                        <i class='bx bx-log-out'></i>
+                        <span class="link-name" style="--i:7;">Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- barra superior -->
+        <header>
+            <div style="display: flex;; width: 100%; justify-content: center;">
+                <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" class="logo" style="margin-right: 10px;">
+                <h3 style="white-space: nowrap;"> Instituto Técnico Don Bosco </h3>
+            </div>
+            <h3 style="position: absolute; right: 0%;"><a href="ajustes.html" style="color: white;"><i class='bx bx-user-circle' style="padding-right: 10px;"></i></a></h3>
+        </header>
+        
+        <!-- contenido principal -->
+        <main>
+            <span id="title">EVALUACIONES</span>
+            <div class="cont_selec">
+                <div class="selec">
+                    GRUPO
+                    <div class="cmb">
+                        <select id="grado"></select>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                </div>
+                <div class="selec">
+                    MATERIA
+                    <div class="cmb">
+                        <select id="materia"></select>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                </div>
+                <div class="selec">
+                    PERIODO
+                    <div class="cmb">
+                        <select id="periodo_eva_plan">
+                            <option value="1">I TRIMESTRE</option>
+                            <option value="2">II TRIMESTRE</option>
+                            <option value="3">III TRIMESTRE</option>
+                        </select>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">
+                <button class="botones" id="btn_plan_eval" onclick="selec_vent('div_plan_eval', 'btn_plan_eval')">
+                    Planificación de Evaluaciones </button>
+                <button class="botones" id="btn_lib_eval" onclick="selec_vent('div_lib_eval', 'btn_lib_eval')">
+                    Libreta de Evaluaciones </button>
+                <button class="botones" id="btn_at" onclick="selec_vent('div_at', 'btn_at')">
+                    Ausencias y Tardanzas </button>
+                <button class="botones" id="btn_prom_per" onclick="selec_vent('div_prom_per', 'btn_prom_per')">
+                    Promedios del Periodo </button>
+                <button class="botones" id="btn_tran_lib" onclick="selec_vent('div_tran_lib', 'btn_tran_lib')">
+                    Transferir Libreta </button>
+            </div>
+            <div class="main2" id="div_plan_eval">
+                <p class="titulos">PLANIFICACIÓN DE EVALUACIONES</p>
+                <table class="tbl_content" id="plan_table" style="min-width: 800px;">
+                    <tr class="tit">
+                        <td style="width: 17.5%;">CLASIF.</td>
+                        <td style="width: 20%;">ASIGNACIÓN</td>
+                        <td style="width: 10%;">CANT.</td>
+                        <td style="width: 37.5%;">DESCRIPCIÓN</td>
+                        <td style="width: 10%;">POND.</td>
+                        <td class="desnone" style="width: 5%;"></td>
+                    </tr>
+                    <tr style="height: 80px;">
+                        <td colspan="5" style="position: relative; z-index: 5; background-color: white;">
+                            <div class="boton_add" onclick="mostrarModal()">
+                                <i class='bx bx-plus' style="font-size: 1.5rem;"></i> Agregar asignación
+                            </div> 
+                        </td>
+                    </tr>
+                </table>
+                <dialog id="modal">
+                    <div class="modal">
+                        <button class="cerrar" onclick="ocultarModal()">
+                            <i class='bx bx-x'></i>
+                        </button>
+                        <span id="clasif" class="subtitles">CLASIFICACIÓN</span>
+                        <div id="clasif-cmb" class="cmb">
+                            <select id="clasif-select">
+                                <option value="1">Nota Diaria</option>
+                                <option value="2">Apreciación</option>
+                                <option value="3">Prueba Final</option>
+                            </select>
+                            <i class='bx bx-chevron-down'></i>
+                        </div> 
+                        <span id="pond" class="subtitles">PONDERACIÓN</span>
+                        <input id="pond-input" type="number" maxlength="6" placeholder="00.00">
+                        <span id="asig" class="subtitles">ASIGNACIÓN</span>
+                        <input id="asig-input" type="text" placeholder="Titulo">
+                        <div id="cant">
+                            <span class="subtitles" style="margin-bottom: 3.75px;">CANTIDAD</span>
+                            <div class="cont">
+                                <span class="min"> - </span>
+                                <span class="num" id="cant-asig">1</span>
+                                <span class="max"> + </span>
+                            </div>
+                        </div>
+                        <span id="descr" class="subtitles">DESCRIPCIÓN</span>
+                        <textarea id="descr-input"></textarea>
+                        <button class="check" onclick="publicEvaData()" id="btn_ok_modal"> <i class='bx bx-check'></i> </button>
+                        <button class="x" onclick="deleteEvaData()" id="btn_delete_modal"> <i class='bx bx-trash-alt'></i> </button>
+                    </div>
+                </dialog>
+            </div>
+            <div class="main2" id="div_lib_eval">
+                <p class="titulos">LIBRETA DE EVALUACIONES</p>
+                <div style="overflow: auto; max-width: 90%; justify-content: start; display: flex;" >
+                    <table class="tbl_content" id="notas_tbl" style="width: 100%;"> 
+                        <tr class="tit" id="tit_notas_tbl">
+                            <td style="min-width: 150px; width: 150px;">CÉDULA</td>
+                            <td style="min-width: 210px; width: 210px;">NOMBRES</td>
+                            <td style="min-width: 210px; width: 210px;">APELLIDOS</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="main2" id="div_at">
+                <p class="titulos">AUSENCIAS Y TARDANZAS</p>
+                <table class="tbl_content">
+                    <tr class="tit">
+                        <td style="width: 15%;">CÉDULA</td>
+                        <td style="width: 20%;">NOMBRES</td>
+                        <td style="width: 20%;">APELLIDOS</td>
+                        <td style="width: 5%;" class="desnone"></td>
+                        <td style="width: 20%;">AUSENCIAS</td>
+                        <td style="width: 20%;">TARDANZAS</td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">8-1051-608</td>
+                        <td> Gabriela Isabel </td>
+                        <td> Avión Guerrero </td>
+                        <td class="desnone"></td>
+                        <td class="min_plus" data-count="0">
+                            <i class='bx bx-minus menos'></i>
+                            <span class="numero">0</span>
+                            <i class='bx bx-plus mas'></i>
+                        </td>
+                        <td class="min_plus" data-count="0">
+                            <i class='bx bx-minus menos'></i>
+                            <span class="numero">0</span>
+                            <i class='bx bx-plus mas'></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">068806707</td>
+                        <td> Isabel Cecilia </td>
+                        <td> Reyes Contreras </td>
+                        <td class="desnone"></td>
+                        <td class="min_plus" data-count="0">
+                            <i class='bx bx-minus menos'></i>
+                            <span class="numero">0</span>
+                            <i class='bx bx-plus mas'></i>
+                        </td>
+                        <td class="min_plus" data-count="0">
+                            <i class='bx bx-minus menos'></i>
+                            <span class="numero">0</span>
+                            <i class='bx bx-plus mas'></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">8-1037-1590</td>
+                        <td> Daniel José </td>
+                        <td> García Bermúdez </td>
+                        <td class="desnone"></td>
+                        <td class="min_plus" data-count="0">
+                            <i class='bx bx-minus menos'></i>
+                            <span class="numero">0</span>
+                            <i class='bx bx-plus mas'></i>
+                        </td>
+                        <td class="min_plus" data-count="0">
+                            <i class='bx bx-minus menos'></i>
+                            <span class="numero">0</span>
+                            <i class='bx bx-plus mas'></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">C0258424871</td>
+                        <td> Fabricio José </td>
+                        <td> Moreno Arauz </td>
+                        <td class="desnone"></td>
+                        <td class="min_plus" data-count="0">
+                            <i class='bx bx-minus menos'></i>
+                            <span class="numero">0</span>
+                            <i class='bx bx-plus mas'></i>
+                        </td>
+                        <td class="min_plus" data-count="0">
+                            <i class='bx bx-minus menos'></i>
+                            <span class="numero">0</span>
+                            <i class='bx bx-plus mas'></i>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="main2" id="div_prom_per">
+                <p class="titulos">PROMEDIOS DEL PERIODO</p>
+                <table class="tbl_content">
+                    <tr class="tit">
+                        <td style="width: 15%;">CÉDULA</td>
+                        <td style="width: 20%;">NOMBRES</td>
+                        <td style="width: 20%;">APELLIDOS</td>
+                        <td style="width: 10%;">I</td>
+                        <td style="width: 10%;">II</td>
+                        <td style="width: 10%;">III</td>
+                        <td style="width: 10%; flex-wrap: wrap; font-size: 14px;">PROM FINAL</td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">8-1051-608</td>
+                        <td> Gabriela Isabel </td>
+                        <td> Avión Guerrero </td>
+                        <td class="nt5"> 0.00 </td>
+                        <td></td>
+                        <td></td>
+                        <td class="nt5"> 0.00 </td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">068806707</td>
+                        <td> Isabel Cecilia </td>
+                        <td> Reyes Contreras </td>
+                        <td class="nt5"> 0.00 </td>
+                        <td></td>
+                        <td></td>
+                        <td class="nt5"> 0.00 </td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">8-1037-1590</td>
+                        <td> Daniel José </td>
+                        <td> García Bermúdez </td>
+                        <td class="nt5"> 0.00 </td>
+                        <td></td>
+                        <td></td>
+                        <td class="nt5"> 0.00 </td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">C0258424871</td>
+                        <td> Fabricio José </td>
+                        <td> Moreno Arauz </td>
+                        <td class="nt5"> 0.00 </td>
+                        <td></td>
+                        <td></td>
+                        <td class="nt5"> 0.00 </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="main2" id="div_tran_lib">
+                <p class="titulos">TRANSFER LIBRETA EVALUACIONES</p>
+                <table class="tbl_content">
+                    <tr class="tit">
+                        <td style="width: 10%;">GRUPO</td>
+                        <td style="width: 15%;">PERIODO</td>
+                        <td style="width: 35%;">ASIGNATURA</td>
+                        <td style="width: 10%;" class="desnone"></td>
+                        <td style="width: 7.5%;">NOTAS</td>
+                        <td style="width: 7.5%;">A Y T</td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">11C</td>
+                        <td id="selecto"> 
+                            <div class="cmb">
+                                <select id="periodo">
+                                    <option value="1">I TRIM</option>
+                                    <option value="2">II TRIM</option>
+                                    <option value="3">III TRIM</option>
+                                    <option value="4">TODOS</option>
+                                </select>
+                                <i class='bx bx-chevron-down'></i>
+                            </div> 
+                        </td>
+                        <td> Religion </td>
+                        <td class="desnone"></td>
+                        <td> <input type="checkbox"> </td>
+                        <td> <input type="checkbox"> </td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">11D</td>
+                        <td id="selecto"> 
+                            <div class="cmb">
+                            <select id="periodo">
+                                <option value="1">I TRIM</option>
+                                <option value="2">II TRIM</option>
+                                <option value="3">III TRIM</option>
+                                <option value="4">TODOS</option>
+                            </select>
+                            <i class='bx bx-chevron-down'></i>
+                            </div> 
+                        </td>
+                        <td> Religión </td>
+                        <td class="desnone"></td>
+                        <td> <input type="checkbox"> </td>
+                        <td> <input type="checkbox"> </td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">12C</td>
+                        <td id="selecto"> 
+                            <div class="cmb">
+                            <select id="periodo">
+                                <option value="1">I TRIM</option>
+                                <option value="2">II TRIM</option>
+                                <option value="3">III TRIM</option>
+                                <option value="4">TODOS</option>
+                            </select>
+                            <i class='bx bx-chevron-down'></i>
+                            </div> 
+                        </td>
+                        <td> Religión </td>
+                        <td class="desnone"></td>
+                        <td> <input type="checkbox"> </td>
+                        <td> <input type="checkbox"> </td>
+                    </tr>
+                    <tr>
+                        <td class="clasif_cont">12D</td>
+                        <td id="selecto"> 
+                            <div class="cmb">
+                            <select id="periodo">
+                                <option value="1">I TRIM</option>
+                                <option value="2">II TRIM</option>
+                                <option value="3">III TRIM</option>
+                                <option value="4">TODOS</option>
+                            </select>
+                            <i class='bx bx-chevron-down'></i>
+                            </div> 
+                        </td>
+                        <td> Religion </td>
+                        <td class="desnone"></td>
+                        <td> <input type="checkbox"> </td>
+                        <td> <input type="checkbox"> </td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+
+        <!-- js -->
+        <script src="scripts/sidebar.js"></script> 
+        <script src="scripts/evaluacion.js"></script>
+        <script> <!-- contador at -->
+            document.querySelectorAll('.min_plus').forEach(container => {
+                let mas = container.querySelector(".mas");
+                let menos = container.querySelector(".menos");
+                let numero = container.querySelector(".numero");
+
+                mas.addEventListener("click", () => {
+                    let b = parseInt(container.getAttribute("data-count")) + 1;
+                    container.setAttribute("data-count", b);
+                    numero.innerText = b;
+                });
+
+                menos.addEventListener("click", () => {
+                    let b = parseInt(container.getAttribute("data-count"));
+                    if (b > 0) {
+                        b--;
+                        container.setAttribute("data-count", b);
+                        numero.innerText = b;
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

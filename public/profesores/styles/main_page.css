@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lexend Exa', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+
+/* Personalización del scrollbar */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: #ddf1f1;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #8ce8e8;
+    border-radius: 10px;
+    border: 3px solid #ddf1f1; /* Coloca un borde igual al color del track */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color */
+}
+
+body::-webkit-scrollbar-thumb:active {
+    background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+}
+
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
+.sidebar{ 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 62px;
+    height: 100%;
+    background: #0e8282;
+    padding: 6px 14px;
+    transition: .5s;
+}
+
+.sidebar.active{
+    width: 280px;
+}
+
+.sidebar .logo-menu{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+}
+
+.sidebar .logo-menu .name{
+    margin-left: 5px;
+    height: 50px;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0;
+    transition: .3s;
+}
+
+.sidebar.active .logo-menu .name{
+    opacity: 1;
+    transition-delay: .2s;
+}
+
+.sidebar .logo-menu .toggle-btn{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.sidebar.active .logo-menu .toggle-btn{
+    left: 85%;
+}
+
+.sidebar .list{
+    margin-top: 10px;
+}
+
+.list .list-item{
+    list-style: none;
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+.list .list-item a{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: .5s;
+}
+
+.list .list-item a i{
+    padding: 0 5px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.list .list-item span{
+font-size: 16px;
+}
+
+.sidebar .link-name{
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.sidebar.active .link-name{
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: calc(.1s * var(--i));
+}
+
+.list .list-item.active a,
+.list .list-item a:hover{
+    background: #4d8787;
+} 
+
+header{
+    display: flex;
+    background-color: #8ce8e8;
+    font-size: 24px;
+    color:#ffffff;
+    height: 60px;
+    margin-left: 62px;
+    min-width: 700px;
+    align-items: center;
+    text-align: right;
+}
+
+.logo{
+    width: 40px;
+    align-items: center;
+}
+
+.main-content{
+    display: flex;
+    align-items: center;
+    margin-left: 62px;
+    min-width: 1000px;
+    height: calc(100% - 60px) !important;
+}
+
+.main-content .content{
+    display: flex;
+    background-color: #FFFFff;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.main-content .content .user{
+    background-color: #16c4c4;
+    border-radius: 16px;
+    padding: 20px 60px;
+    height: 460px;
+    font-size: 18px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 22px;
+}
+
+.profile{
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 160px;
+    color: #16c4c4;
+}
+.main-content .content .promedio{
+    background-color: #80dddd;
+    border-radius: 16px;
+    padding: 5px;
+    height: 200px;
+    margin: 20px;
+    align-items: center;
+    min-width: 340px;
+    transition: background 0.3s ease;
+}
+
+.main-content .content .saldo{
+    background-color: #80dddd;
+    border-radius: 16px;
+    padding: 5px;
+    height: 200px;
+    margin: 20px;
+    align-items: center;
+    min-width: 310px;
+    transition: background 0.3s ease;
+}
+
+.main-content .content .actividades{
+    background-color: #80dddd;
+    border-radius: 16px;
+    padding: 5px;
+    height: 200px;
+    margin: 20px;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.main-content .content .actividades:hover, .main-content .content .saldo:hover, .main-content .content .promedio:hover{
+    background-color: #16c4c4;
+}
+
+.panel-title{
+    margin: 5px;
+    color:#fff;
+    text-align: center;
+    font-size: 14px;
+}
+
+.panel-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    background-color: #ffffff;
+    align-items: center;
+    text-align: center;
+    height: 153px;
+}
+
+.main-content .content .actividades .boton{
+    border: 2px #80dddd solid;
+    padding: 12px 24px;
+    border-radius: 10px;
+    width: 100px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.fechas_agen{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.up-arrow, .down-arrow{
+    font-size: 20px;
+    color: #6fdcdc;
+    text-align: center;
+    padding: 0 4px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.up-arrow:hover, .down-arrow:hover{
+    background-color: #ddf1f1;
+    color: #16c4c4;
+}
+
+.ver_bol{
+    color: #15b3b3;
+}
+
+.ver_bol:hover{
+    color: #0e8282;
+}
+
+.selec{
+    display: flex;
+    flex-direction: column;
+}
+
+.selec a{
+    text-align: center;
+}
+
+.selec a i{
+    font-size: 22px; 
+    color: #6fdcdc;
+}
+
+.selec .selec_asig p{
+    font-size: 20px;
+    color: #0e8282;
+    margin-bottom: 4px;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Técnico Don Bosco</title>
+        <link rel="stylesheet" href="styles/inicio_sesion.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <div style="display: flex; justify-content: center; align-items: center; min-height: 400px; position: absolute; top: 0; width: 100%; height: 70%;">
+            <div  class="frm_1">
+                <p class="tit">Cédula:<span style="padding-left: 9%; color: red; font-size: 14px;" id="wrong"></span></p>
+                <input type="text" placeholder="Ingresa tu número de cédula" class="txt_1" id="usuario">
+                <p class="tit">Contraseña:</p>
+                <input type="password" placeholder="Ingresa tu contraseña" class="txt_1" id="contra">
+                <div style="width: 100%; text-align: center;">
+                    <a href="#" style="color: #16C4C4;font-size: 13px;">Olvidé mi contraseña</a><br>
+                    <a>
+                        <button class="btn_1" onclick="login('usuario', 'contra')">
+                            INGRESAR
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div style="background-color: #0e8282; display: flex; position: absolute; bottom: 0; width: 100%; height: 30%;">
+            <div style="width: 50%; height: 100%; display: grid; place-items: center;">
+                <p style="color: white; font-size: 18px; width: 100%; padding: 0 8%;">
+                    Contactános<br>
+                    Correo: gradyexpo2024@gmail.com<br>
+                    Dirección: XFPV+R2H, Vía Israel, Panamá,<br>
+                    Provincia de Panamá
+                </p>
+            </div>
+            <div style="width: 50%; height: 100%; display: flex; justify-content: flex-end; align-items: center;">
+                    <img src="assets/logo_grady.svg" alt="GRADY" style="width: 45%;margin-right: 8%; cursor: pointer;" onclick="window.location.href = '/pagina_inicio.html'">
+            </div>
+        </div>
+    </body>
+    <script src="scripts/inicio_sesion.js"></script>
+</html>

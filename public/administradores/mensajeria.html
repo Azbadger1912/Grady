@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instituto Técnico Don Bosco</title>
+        <link rel="stylesheet" href="styles/mensajeria.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel='stylesheet'>
+    </head>
+    <body>
+        <!-- barra lateral -->
+        <nav class="sidebar">
+            <div class="logo-menu">
+                <img src="assets/logo_grady.svg" class="name">
+                <i class="bx bx-menu toggle-btn"></i>
+            </div>
+            <ul class="list">
+                <li class="list-item">
+                    <a href="pagina_principal.html">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span class="link-name" style="--i:1;">Inicio</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="mensajeria.html" style="background-color: white; color: #0e8282;">
+                        <i class='bx bx-message-detail'></i>
+                        <span class="link-name" style="--i:1;">Mensajería</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="institucion.html">
+                        <i class='bx bxs-graduation'></i>
+                        <span class="link-name" style="--i:2;">Institución</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="profesores.html">
+                        <i class='bx bx-chalkboard'></i>
+                        <span class="link-name" style="--i:3;">Profesores</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="estudiantes.html">
+                        <i class='bx bx-file'></i>
+                        <span class="link-name" style="--i:4;">Estudiantes</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="info.html">
+                        <i class='bx bx-info-circle' ></i>
+                        <span class="link-name" style="--i:4;">Información</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="ajustes.html">
+                        <i class='bx bx-cog' ></i>
+                        <span class="link-name" style="--i:5;">Configuración</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a onclick="cerrarSesion()">
+                        <i class='bx bx-log-out'></i>
+                        <span class="link-name" style="--i:6;">Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+       
+        
+        <!-- barra superior -->
+        <header>
+            <div style="display: flex;; width: 100%; justify-content: center;">
+                <img src="assets/Logo-ITDB-nombre-completo_panama.png" alt="itdb logo" class="logo" style="margin-right: 10px;">
+                <h3 style="white-space: nowrap;"> Instituto Técnico Don Bosco </h3>
+            </div>
+            <h3 style="position: absolute; right: 0%;"><a href="ajustes.html" style="color: white;"><i class='bx bx-user-circle' style="padding-right: 10px;"></i></a></h3>
+        </header>
+
+        <!-- contenido principal -->
+        <main>
+            <span id="title">MENSAJERÍA</span>
+            <div class="main">
+                <ul class="opcs">
+                    <li class="red"> 
+                        <a href="#" class="toggle-link" data-target="div2">
+                            <span style="color: #ffffff;"> Redactar </span>
+                            <i class='bx bx-plus' style="color: #ffffff;"></i>
+                        </a>
+                    </li> 
+                    <li></li>
+                    <li> 
+                        <a href="#" class="toggle-link active" data-target="div1" style="color: #16c4c4; text-decoration: underline; pointer-events: auto;">
+                            <span class="rest"> Recibidos </span>
+                        </a>
+                    </li> 
+                    <li> 
+                        <a href="#" class="toggle-link" data-target="div3">
+                            <span class="rest"> Enviados </span>
+                        </a>
+                    </li> 
+                    <li> 
+                        <a href="#" class="toggle-link" data-target="div4">
+                            <span class="rest"> Borradores </span>
+                        </a>
+                    </li> 
+                    <li> 
+                        <a href="#" class="toggle-link" data-target="div5">
+                            <span class="rest"> Eliminados </span>
+                        </a>
+                    </li> 
+                    <li></li>
+                    <li></li>
+                    <li>
+                        <a href="ajustes.html" class="link-ajus">
+                            <i class='bx bx-user-circle' style="font-size: 20px;"></i>
+                            <span class="rest"> Fabricio Moreno </span>
+                        </a>
+                    </li>
+                </ul>
+                <div id="div1" class="bandeja">
+                    <div id="bandeja_recibidos" class="container">
+                        <span class="empty" style="display: none;">No hay mensajes recibidos.</span>
+                        <!-- mensajes por js -->
+                    </div>
+                </div>
+                <div id="div2" class="redactar hidden">
+                    <div class="top">
+                        <label for="nombre" id="l1"> Para: </label>
+                        <input type="text" id="nombre" name="nombre">
+                        <label for="nombre" id="l2"> CC: </label>
+                        <input type="text" id="cc" name="cc">
+                        <label for="nombre" id="l3"> Asunto: </label>
+                        <input type="text" id="asunto" name="asunto">
+                        <div class="snd-del">
+                            <button class="btns"><i class='bx bxs-send'></i></button>
+                            <button class="btns"><i class='bx bxs-trash'></i></button>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="format">
+                            <button onclick="formatDoc('undo')"> <i class='bx bx-undo' ></i> </button>
+                            <button onclick="formatDoc('redo')" style="margin-right: 10px;"> <i class='bx bx-redo' ></i> </button>
+                    
+                            <button onclick="formatDoc('justifyLeft')"> <i class='bx bx-align-left'></i> </button>
+                            <button onclick="formatDoc('justifyCenter')"> <i class='bx bx-align-middle'></i> </button>
+                            <button onclick="formatDoc('justifyRight')"> <i class='bx bx-align-right'></i> </button>
+                            <button onclick="formatDoc('justifyFull')" style="margin-right: 10px;"> <i class='bx bx-align-justify'></i> </button>
+                        
+                            <button onclick="formatDoc('bold')"> <i class='bx bx-bold'></i> </button>
+                            <button onclick="formatDoc('italic')"> <i class='bx bx-italic'></i> </button>
+                            <button onclick="formatDoc('underline')" style="margin-right: 10px;"> <i class='bx bx-underline'></i> </button>
+                    
+                            <button onclick="formatDoc('insertOrderedList')"> <i class='bx bx-list-ol'></i> </button>
+                            <button onclick="formatDoc('insertUnorderedList')" style="margin-right: 10px;"> <i class='bx bx-list-ul'></i> </button>
+                    
+                            <button onclick="createLink()"> <i class='bx bx-link' ></i> </button>
+                            <button onclick="formatDoc('unlink')"> <i class='bx bx-paperclip'></i> </button>
+                        </div>
+                        <div id="content" contenteditable="true" spellcheck="false">Lorem ipsum.</div>
+                    </div>
+                </div>
+                <div id="div3" class="enviados hidden">
+                    <div id="bandeja_enviados" class="container">
+                        <button class="mens">
+                            <i class='bx bx-user-circle'></i>
+                            <div class="rem-mes">
+                                <p> asunto - dest1, dest2, dest3, dest4... </p>
+                                <p> vista previa del mensaje </p>
+                            </div>
+                            <div class="date-new">
+                                <p> fecha </p>
+                            </div>
+                        </button>
+                        <span class="empty" style="display: none;">No hay mensajes eliminados.</span>
+                        <!-- mas mensajes por js -->
+                    </div>
+                </div>    
+                <div id="div4" class="borradores hidden">
+                    <div id="bandeja_borradores" class="container">
+                        <button class="mens">
+                            <i class='bx bx-user-circle'></i>
+                            <div class="rem-mes">
+                                <p> asunto - dest1, dest2, dest3, dest4... </p>
+                                <p> <span style="color: red;"> (borrador) </span> vista previa del mensaje </p>
+                            </div>
+                            <div class="date-new">
+                                <p> fecha </p>
+                            </div>
+                        </button>
+                        <span class="empty" style="display: none;">No hay mensajes eliminados.</span>
+                        <!-- mas mensajes por js -->
+                    </div>
+                </div>
+                <div id="div5" class="eliminados hidden">
+                    <div id="bandeja_eliminados" class="container">
+                        <span class="empty" style="display: none;">No hay mensajes eliminados.</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- modals -->
+        <dialog class="mensaje"> <!-- mensajes -->
+            <button class="cerrar"> <i class='bx bx-x'></i> </button>
+            <div class="mens_content">
+                <p class="fecha">día de la semana, número de mes de año, hora</p>
+                <span class="asunto">Asunto</span>
+                <div class="mens_top">
+                    <span style="grid-area: de;">De:</span>
+                    <p style="grid-area: remit;">Remitente</p>
+                    <span style="grid-area: para;">Para:</span>
+                    <p style="grid-area: persona;">personas que reciben aaaaaaaaaaaa</p>
+                    <span style="grid-area: cc;">CC:</span>
+                    <p style="grid-area: otros;">otras aaaaaaaaaaaaaaaaaaaa</p>
+                </div>
+                <button class="file"> Archivo adjunto <i class='bx bx-download'></i> </button>
+                <p style="line-height: 23px;">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi harum eum alias, dolore nemo qui 
+                    architecto veritatis dolores fugit amet dicta aliquid voluptas sunt atque sed mollitia animi. 
+                    Possimus odio deserunt quisquam odit, mollitia itaque sapiente quam pariatur facilis voluptates
+                    qui perspiciatis molestiae nobis sed unde veniam officia? Corrupti, temporibus sequi cupiditate, 
+                    tenetur eos iure iste excepturi quia eligendi dolorem perspiciatis eius, sint incidunt minus! 
+                    Nemo quas aut dolorum dolore fugiat ex voluptatibus impedit dolores aliquid, nobis, culpa nihil,
+                    ea praesentium itaque error nostrum assumenda amet temporibus dicta unde consectetur. Quos in sit
+                    soluta minus debitis quam illum porro. Perspiciatis, consequuntur id porro recusandae optio nam 
+                    natus ipsum, obcaecati quas doloribus dolorem voluptatem cumque quos quod sapiente vitae libero? 
+                    Culpa?
+                <p>
+            </div>
+        </dialog>
+        <i class='bx bxs-circle'></i>
+
+        <!-- js -->
+        <script src="scripts/sidebar.js"></script>
+        <script src="scripts/mensajeria.js"></script>
+    </body>
+</html>

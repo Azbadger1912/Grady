@@ -1,10 +1,3 @@
-const sidebar = document.querySelector('.sidebar');
-const toggleBtn = document.querySelector('.toggle-btn');
-
-toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
-});
-
 async function fetchData() {
     try {
         const response = await fetch('/agenda_data');
@@ -347,11 +340,6 @@ function prevMonth() {
         currentMonth--;
     }
     updateCalendar(currentMonth, currentYear);
-}
-
-function cerrarSesion() {
-    // Redirigir al endpoint de logout
-    window.location.href = '/logout';
 }
 
 // Variable global para el mes y año actuales

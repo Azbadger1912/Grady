@@ -1,10 +1,3 @@
-const sidebar = document.querySelector('.sidebar');
-const toggleBtn = document.querySelector('.toggle-btn');
-
-toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     selec_vent('not_dia_cont', 'boton_not_dia');
 });
@@ -842,11 +835,6 @@ async function fetchData_observ() {
     } catch (error) {
         console.error('Error obteniendo los datos:', error);
     }
-}
-
-function cerrarSesion() {
-    // Redirigir al endpoint de logout
-    window.location.href = '/logout';
 }
 
 function cambiarTrimNot(trim, si){

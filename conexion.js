@@ -11,7 +11,7 @@ const port = 3001;
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: "localhost",
-    database: "prueba1",
+    database: "gradybase",
     user: "root",
     password: "",
 });

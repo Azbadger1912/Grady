@@ -1,4 +1,6 @@
+// Consulta y colocacion de datos personales del estudiante
 document.addEventListener("DOMContentLoaded", function() {
+    // Consulta a la base de datos
     fetch('/user_data')
         .then(response => response.json())
         .then(data => {
@@ -7,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const userName = data.userNickName;
             const consejero = data.consejero;
 
-            // Aquí puedes usar las variables como desees
+            // Colocacion de datos personales del estudiante
             const name = document.getElementById('nom_ape');
             const grad = document.getElementById('grado');
             const guide = document.getElementById('conse');
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error('Error al obtener los datos del usuario:', error));
 });
 
-
+// Declaracion de variables de fecha actual y constante de las abreviaciones de los dias
 const days = ['lun', 'mar', 'mie', 'jue', 'vie'];
 let currentDayIndex = 0;
 let currentDate = new Date();
@@ -35,14 +37,17 @@ if (currentDate.getDay() === 6) { // Sábado
     currentDayIndex = currentDate.getDay() - 1; // Lunes = 0, Martes = 1, ..., Viernes = 4
 }
 
+// Funcion para actualizar el panel de actividades
 async function updateAsignment() {
     try {
+        // Consulta a la base de datos de la agenda del estudiante
         const response = await fetch('/agenda_data');
         if (!response.ok) {
             throw new Error('Error en la solicitud');
         }
         const data = await response.json();
 
+        // Evaluaciones para colocar las actividades proximas en el panel
         let slots = 0;
         for (let dato of data) {
             const fecha = new Date(dato['Fecha']);
@@ -98,7 +103,7 @@ async function updateAsignment() {
     }
 }
 
-
+// Actualizar la fecha segun el dia de la semana en el panel de actividades
 function updateDisplay() {
     const dayText = document.getElementById('dia_boton');
     const dateText = document.querySelector('.fechas_agen p:nth-child(2)');
@@ -117,6 +122,7 @@ function updateDisplay() {
     updateAsignment()
 }
 
+// Retroceder un dia en la semana en el panel de actividades
 document.querySelector('.up-arrow').addEventListener('click', function (e) {
     e.preventDefault();
     if (currentDayIndex > 0) {
@@ -126,6 +132,8 @@ document.querySelector('.up-arrow').addEventListener('click', function (e) {
     }
 });
 
+
+// Avanzar un dia en la semana en el panel de actividades
 document.querySelector('.down-arrow').addEventListener('click', function (e) {
     e.preventDefault();
     if (currentDayIndex < 4) {
@@ -135,6 +143,7 @@ document.querySelector('.down-arrow').addEventListener('click', function (e) {
     }
 });
 
+// Determinar que trimestre se esta cursando y colocar el promedio
 async function showProms() {
     try {
         const response = await fetch('/promedios_data');
@@ -142,6 +151,8 @@ async function showProms() {
             throw new Error('Error en la solicitud');
         }
         const data = await response.json();
+
+        // Evaluaciones para determinar que trimestre esta cursando
         for (let dato of data){
             if (dato['Trimestre'] == 'Primero'){
                 if (dato['Cursando'] == '1'){

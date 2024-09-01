@@ -1,36 +1,35 @@
+// Llamado a la funcion inicial 
 document.addEventListener('DOMContentLoaded', function() {
     selec_vent('not_dia_cont', 'boton_not_dia');
 });
 
-function selec_vent(cont, bot){
-    var conteiner = document.getElementById(cont);
-    var cont_1 = document.getElementById('not_dia_cont');
-    var cont_2 = document.getElementById('cond_cont');
-    var cont_3 = document.getElementById('bol_pro_cont');
-    var boton = document.getElementById(bot);
-    var bot_1 = document.getElementById('boton_not_dia');
-    var bot_2 = document.getElementById('boton_conducta');
-    var bot_3 = document.getElementById('boton_bol_pro');
-    bot_1.classList.remove('select_bot');
-    bot_2.classList.remove('select_bot');
-    bot_3.classList.remove('select_bot');
-    cont_1.classList.remove('select');
-    cont_2.classList.remove('select');
-    cont_3.classList.remove('select');
-    conteiner.classList.add('select');
-    boton.classList.add('select_bot');
+// Seleccionar la pestaña mostrada en la pagina
+function selec_vent(cont, bot) {
+    const contenedores = ['not_dia_cont', 'cond_cont', 'bol_pro_cont'];
+    const botones = ['boton_not_dia', 'boton_conducta', 'boton_bol_pro'];
+
+    // Remover clases de todos los contenedores y botones
+    contenedores.forEach(id => document.getElementById(id).classList.remove('select'));
+    botones.forEach(id => document.getElementById(id).classList.remove('select_bot'));
+
+    // Agregar clases al contenedor y botón seleccionados
+    document.getElementById(cont).classList.add('select');
+    document.getElementById(bot).classList.add('select_bot');
 }
 
+// Mostrar ventana modal de las materias
 function ver_not_dia(container){
     var cont = document.getElementById(container.id);
     cont.classList.add('show');
 }
 
+// Cerrar ventana modal de las materias
 function cer_not_dia(container){
     var cont = document.getElementById(container.id);
     cont.classList.remove('show');
 }
 
+// Añadir una nueva nota a la tabla de notas diarias con el formato adecuado
 function addNoteAndTitle(subject, newNote, promFin) {
     const table = document.querySelector('.table_notas_dia');
     let maxTitleNumber = 0;
@@ -137,6 +136,8 @@ function addNoteAndTitle(subject, newNote, promFin) {
             count++;
         }
     }
+
+    //colocar el promedio en la celda final de la fila con su formato adecuado
     const average = (parseFloat(promFin)).toFixed(2);
     if (average < 3){subjectRow.cells[subjectRow.cells.length - 1].className = 'notas_dia promedio_mat_5';} 
     else if (average < 3.5){subjectRow.cells[subjectRow.cells.length - 1].className = 'notas_dia promedio_mat_4';} 
@@ -146,6 +147,7 @@ function addNoteAndTitle(subject, newNote, promFin) {
     subjectRow.cells[subjectRow.cells.length - 1].innerText = average;
 }
 
+// Creacion de la una fila de una materia donde estaran contenidas las notas al igual que la creacion de su modal
 function materia(nombre, nomb_prof, ahno, si){
     const id_modal = `${nombre.toUpperCase()}_modal`;
     const newMat = document.createElement('tr');
@@ -180,6 +182,7 @@ function materia(nombre, nomb_prof, ahno, si){
     return newMat;
 }
 
+// Creacion de la ventana modal de cada materia que se añada
 function createModal(mate, id, nombre, ahno) {
     // Crear contenedor del modal
     const modalContainer = document.createElement('div');
@@ -335,6 +338,7 @@ function createModal(mate, id, nombre, ahno) {
     document.body.appendChild(modalContainer);
 }
 
+// Crear una fila para colocar una nota en la tabla de los modals de las materias en el lugar adecuado
 function agregarNota(tipoNota, nota, fecha, nombreAsignacion, mat, trim) {
     // Crear una nueva fila
     const nuevaFila = document.createElement('tr');
@@ -497,10 +501,13 @@ function agregarNota(tipoNota, nota, fecha, nombreAsignacion, mat, trim) {
         else if (promedioFinal < 4.5){ultimaFila.cells[1].className = 'promedio_mat_2 nota';} 
         else if (promedioFinal <= 5){ultimaFila.cells[1].className = 'promedio_mat_1 nota';}
     }
+
+    // Llamado a las funciones consecuentes
     bolProProms(promedioFinal, mat, trim);
     addNoteAndTitle(mat, nota, promedioFinal, trim);
 }
 
+// Agregar los promedios actualizados en el boletin proyectado en su lugar correspondiente al igual que realizar los calculos necesarios
 function bolProProms(promedioFinal, mat, trim){
     const bolProProm1 = document.getElementById(`bolProProm1_${mat.toUpperCase()}`);
     const bolProProm2 = document.getElementById(`bolProProm2_${mat.toUpperCase()}`);
@@ -532,6 +539,8 @@ function bolProProms(promedioFinal, mat, trim){
     }
 
     const promTot = document.getElementById(`bolPromTot_${mat.toUpperCase()}`);
+
+    // Calculo de los promedios de los tres trimestres
     if (bolProProm1.textContent == '-'){
         if (bolProProm2.textContent == '-'){
             if (bolProProm3.textContent == '-'){
@@ -586,10 +595,14 @@ function bolProProms(promedioFinal, mat, trim){
         aprobReprob.textContent = 'REPROBADO';
     }
 
+    // Realizar el calculo total del promedio del trimestre
     calPromCel(trim);
+
+    // Realizar el calculo total de los tres trimestres
     calPromCel(4)
 }
 
+// Evaluar los promedios de las materias y realizar el promedio total del trimestre
 function calPromCel(trim) {
     const table = document.getElementById('tabla_bol_pro');
     const tbody = table.querySelector('tbody');
@@ -618,6 +631,8 @@ function calPromCel(trim) {
     const promedio = contador > 0 ? suma / contador : 0;
     const promcel = document.getElementById(`bolPromTot${trim}`);
     promcel.textContent = promedio.toFixed(2);
+
+    // Colocar el formato adecuado
     if (promedio < 1){promcel.className = 'promedio_mat_0';} 
     else if (promedio < 3){promcel.className = 'promedio_mat_5';} 
     else if (promedio < 3.5){promcel.className = 'promedio_mat_4';} 
@@ -626,6 +641,7 @@ function calPromCel(trim) {
     else if (promedio <= 5){promcel.className = 'promedio_mat_1';}
 }
 
+// Crear una fila por cada materia que este especificada en la base de datos en el boletin proyectado
 function crearFilaBolPro(mat) {
     const table = document.getElementById('tabla_bol_pro');
     const matTr = document.createElement('tr');
@@ -702,6 +718,7 @@ function crearFilaBolPro(mat) {
     }
 }
 
+// Crear una fila para cada materia que este especificada en la base de datos en la tabla de conducta
 function crearFilCond(mat, prof, aus, tar){
     const table = document.getElementById('con_table')
     const tr = document.createElement('tr');
@@ -722,13 +739,18 @@ function crearFilCond(mat, prof, aus, tar){
     table.appendChild(tr);
 }
 
+// Crear una materia en la tabla de notas diarias y en caso que 'si' sea 'si' entonces se cree tambien en el boletin proyectado
 async function fetchData_mat(si) {
     try {
+
+        // Consultar las materias a la base de datos
         const response = await fetch('/materias_data');
         if (!response.ok) {
             throw new Error('Error en la solicitud');
         }
         const data = await response.json();
+
+        // Crear la materia con el formato adecuado
         for (let dato of data) {
             const tabla = document.getElementById('tabla_notas')
             tabla.appendChild(materia(dato['Materia'], dato['Profesor'], currentYear, si));
@@ -739,24 +761,32 @@ async function fetchData_mat(si) {
     }
 }
 
+// Consultar las notas del estudiante y realizar las evualuciones necesarias
 async function fetchData_not(si, trim) {
     
     try {
+
+        // Consultar las notas del estudiante a la base de datos
         const response = await fetch('/notas_data');
         if (!response.ok) {
             throw new Error('Error en la solicitud');
         }
         const data = await response.json();
         
+        // Determinar el trimestre seleccionado
         let trimestre; if (trim == 1){trimestre = 'Primero';} else if (trim == 2){trimestre = 'Segundo';} else {trimestre = 'Tercero';}
         
         for (let dato of data) {
             if (dato['Trimestre'] === trimestre) {
+
+                // Colocar las notas en el formato adecuado
                 const fechaCompleta = new Date(dato['Fecha']);
                 const fecha = `${fechaCompleta.getDate()}-${fechaCompleta.getMonth() + 1}-${fechaCompleta.getFullYear()}`;
                 agregarNota(dato['Tipo'], dato['Nota'], fecha, dato['Nombre'], dato['Materia'], trim);
             }
         }
+
+        // Realizar evaluaciones para que se creen las notas de los tres trimestres para los calculos adecuados
         if(si && trim === 1){
             cambiarTrimNot(2, true);
         } else if (si && trim === 2){
@@ -773,7 +803,6 @@ async function fetchData_not(si, trim) {
                                     <td  class="tit_not_dia" style="min-width: 100px;">PROM</td>
                                 </tr>`;
             fetchData_mat('no')
-            console.log('hola');
             fetchData_not(false, 1);
         }
     } catch (error) {
@@ -781,16 +810,20 @@ async function fetchData_not(si, trim) {
     }
 }
 
+// Consultar los datos de conducta del estudiante en la base de datos y colocarlos en el formato adecuado
 async function fetchData_cond(trim) {
     try {
+        // Consultar los datos de conducta del estudiante a la base de datos
         const response = await fetch('/conducta_data');
         if (!response.ok) {
             throw new Error('Error en la solicitud');
         }
         const data = await response.json();
 
+        // Determinar el trimestre seleccionado
         let trimestre; if (trim == 1){trimestre = 'Primero';} else if (trim == 2){trimestre = 'Segundo';} else {trimestre = 'Tercero';}
 
+        // Colocar los datos en el formato adecuado
         for (let dato of data) {
             if (dato['Trimestre'] === trimestre) {
                 crearFilCond(dato['Materia'], dato['Profesor'], dato['Ausencias'], dato['Tardanzas']);
@@ -818,13 +851,17 @@ async function fetchData_cond(trim) {
     }
 }
 
+// Consultar y Colocar las observaciones del consejero
 async function fetchData_observ() {
     try {
+        // Consultar las observaciones del consejero a la base de datos
         const response = await fetch('/observacion_data');
         if (!response.ok) {
             throw new Error('Error en la solicitud');
         }
         const data = await response.json();
+
+        // Colocar las observaciones en el formato adecuado
         for (let dato of data) {
             const obs_list = document.getElementById('observaciones');
             const obser = document.createElement('li');
@@ -837,6 +874,7 @@ async function fetchData_observ() {
     }
 }
 
+// Cambiar de trimestre en la tabla de notas diarias
 function cambiarTrimNot(trim, si){
     const elements = document.querySelectorAll('.created-element-not');
     elements.forEach(element => element.remove());
@@ -851,6 +889,7 @@ function cambiarTrimNot(trim, si){
     fetchData_not(si, trim);
 }
 
+// Cambiar de trimestre en la tabla de conducta
 function cambiarTrimCond(trim){
     const elements = document.querySelectorAll('.created-element-con');
     elements.forEach(element => element.remove());
@@ -858,17 +897,20 @@ function cambiarTrimCond(trim){
     fetchData_cond(trim);
 }
 
+// Consultar y colocar las informacion personal del estudiante en el boletin proyectado
 document.addEventListener("DOMContentLoaded", function() {
+    
     fetch('/user_data')
         .then(response => response.json())
         .then(data => {
+
+            // Obtener la informacion a la base de datos
             const grado = data.grado;
             const cedula = data.cedula;
             const userName = data.userName;
             const userLastName = data.userLastName;
 
-            // Aquí puedes usar las variables como desees
-            
+            // Colocar la informacion en el formato adecuado
             const cedu = document.getElementById('cedul_bol_pro');
             const name = document.getElementById('nomb_bol_pro');
             const lastName = document.getElementById('apell_bol_pro');
@@ -885,18 +927,21 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error('Error al obtener los datos del usuario:', error));
 });
 
+// Evento para cambiar de trimestre en la tabla de notas diarias
 const selectElementNot = document.getElementById('trimestre_not');
 selectElementNot.addEventListener('change', function() {
     // Llama a la función cuando cambie la opción seleccionada
     cambiarTrimNot(this.value, false);
 });
 
+// Evento para cambiar de trimestre en la tabla de conducta
 const selectElementCon = document.getElementById('trimestre_cond');
 selectElementCon.addEventListener('change', function() {
     // Llama a la función cuando cambie la opción seleccionada
     cambiarTrimCond(this.value);
 });
 
+// Declaracion del año actual y ejecucion de las funciones iniciales
 const currentYear = new Date().getUTCFullYear();
 fetchData_mat('si');
 fetchData_not(true, 1);

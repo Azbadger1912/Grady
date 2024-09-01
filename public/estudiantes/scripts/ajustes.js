@@ -1,38 +1,46 @@
+// Declaracion de la vairable de cedula para usos posteriores
 let cedula;
 
+// Consulta y Colocacion de los datos del usuario
 document.addEventListener("DOMContentLoaded", function() {
     fetch('/user_data')
         .then(response => response.json())
         .then(data => {
-            const pass = data.contrasena;
-            const userName = data.userNickName;
-            const correo = data.correo;
-            cedula = data.cedula;
+          // Obtencion de datos del usuario
+          const pass = data.contrasena;
+          const userName = data.userNickName;
+          const correo = data.correo;
+          cedula = data.cedula;
 
-            const usuario = document.getElementById('user');
-            const password = document.getElementById('pass');
-            const email = document.getElementById('email');
-            usuario.value = userName;
-            password.value = pass;
-            email.value = correo;
+          // Colocacion de datos en el formato adecuado
+          const usuario = document.getElementById('user');
+          const password = document.getElementById('pass');
+          const email = document.getElementById('email');
+          usuario.value = userName;
+          password.value = pass;
+          email.value = correo;
         })
         .catch(error => console.error('Error al obtener los datos del usuario:', error));
 });
 
+// Modificar datos principales del usuario
 function modificarDatos(){
-    const nombre = document.getElementById('user').value;
-    const correo = document.getElementById('email').value;
 
-    fetch('/update-user', {
+  // Obtencion de datos a modificar de los inputs
+  const nombre = document.getElementById('user').value;
+  const correo = document.getElementById('email').value;
+
+  // Peticion PUT para actualizar los datos en la base de datos
+  fetch('/update-user', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
-    },
+      },
     body: JSON.stringify({
       id: cedula,
       nombre: nombre,
       correo: correo,
-    })
+      })
   })
   .then(response => {
     if (response.ok) {
@@ -50,39 +58,44 @@ function modificarDatos(){
   });
 }
 
+// Modificar contraseña del usuario
 function modificarPass() {
+
+  // Obtencion de datos a modificar de los inputs
   const passIn = document.getElementById('pass1').value;
   const passInConfirm = document.getElementById('pass2').value;
 
   if (passIn === passInConfirm && passIn !== '') {
-      fetch('/update-password', {
-          method: 'PUT',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              id: cedula, // Asegúrate de que la variable `cedula` esté definida y tenga el valor correcto
-              contrasena: passIn // Enviamos el valor de la contraseña, no el elemento HTML
-          })
+    
+    // Peticion PUT para actualizar la contraseña en la base de datos
+    fetch('/update-password', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: cedula,
+        contrasena: passIn
       })
-      .then(response => {
-          if (response.ok) {
-              return response.text();
-          } else {
-              throw new Error('Error al actualizar datos');
-          }
-      })
-      .then(data => {
-          alert(data);
-      })
-      .catch(error => {
-          console.error('Error:', error);
-          alert('Error al actualizar usuario');
-      });
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        throw new Error('Error al actualizar datos');
+      }
+    })
+    .then(data => {
+      alert(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Error al actualizar usuario');
+    });
 
-      document.getElementById('pass1').value = '';
-      document.getElementById('pass2').value = '';
-      document.getElementById('pass2').placeholder = '';
+    document.getElementById('pass1').value = '';
+    document.getElementById('pass2').value = '';
+    document.getElementById('pass2').placeholder = '';
   } else {
       document.getElementById('pass2').value = '';
       document.getElementById('pass1').placeholder = 'Contraseña incorrecta';

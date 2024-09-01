@@ -1,10 +1,15 @@
+// Hacer consulta de las actividades en la base de datos y colocarlas en el formato adecuado
 async function fetchData() {
     try {
+
+        // Hacer la consulta a la base de datos
         const response = await fetch('/agenda_data');
         if (!response.ok) {
             throw new Error('Error en la solicitud');
         }
         const data = await response.json();
+
+        // Hacer las evaluaciones correspondientes y colocar el formato
         for (let dato of data) {
 
             const result = getWeekAndDay(dato['Fecha'], currentMonth, currentYear);
@@ -39,6 +44,7 @@ async function fetchData() {
     }
 }
 
+// Determinar mediante la fecha en que dia y de la semana y semana del mes se encuentra
 function getWeekAndDay(dateString, currentMonth, currentYear) {
     const date = new Date(dateString);
     const dayOfWeek = date.getUTCDay(); // 0 (Sunday) to 6 (Saturday)
@@ -91,23 +97,29 @@ function getWeekAndDay(dateString, currentMonth, currentYear) {
     return { week: 0, day: 0 };
 }
 
+// Eliminar elemento para actualizar la tabla
 function eliminarElementos(){
     const elements = document.querySelectorAll('.generated-element');
     elements.forEach(element => element.remove());
 }
 
+// Agregar funcionalidad a los botones tanto para mostrar como ocultar la ventana modal
 function agregarEventosModal(botones, modalContainer, closeButton) {
+
+    // Agregar funcionalidad a los botones para mostrar la ventana modal
     botones.forEach(boton => {
         boton.addEventListener('click', () => {
             modalContainer.classList.add('show');
         });
     });
 
+    // Agregar funcionalidad al botón para ocultar la ventana modal
     closeButton.addEventListener('click', () => {
         modalContainer.classList.remove('show');
     });
 }
 
+// Crear formato de la vista previa de las asignaciones
 function crearPrevAsign(materia, tipo, asignacion) {
     const asignDiv = document.createElement('div');
     asignDiv.style.marginTop = '5px';
@@ -134,6 +146,7 @@ function crearPrevAsign(materia, tipo, asignacion) {
     return asignDiv
 }
 
+// Evaluar si el dia sobrepasa las 3 asignacion mediante el tamaño esperado
 function evalTam(content, divCreado){
     
     if (content.scrollHeight > 100 && content.scrollHeight < 170) {
@@ -150,10 +163,13 @@ function evalTam(content, divCreado){
 
 }
 
+// Crear el formato de las asignaciones dentro de las ventanas modales
 function crearAsignacion(materia, tema, ind_prin, ind_det, tipo, asignacion, adjunto) {
+    
     const asignacionDiv = document.createElement('div');
     asignacionDiv.classList.add('one_asig_modal_content');
     
+    // Crear la estructura de la materia, tema y boton de archivo adjunto
     const matTemDiv = document.createElement('div');
     matTemDiv.classList.add('mat_tem');
     
@@ -195,6 +211,7 @@ function crearAsignacion(materia, tema, ind_prin, ind_det, tipo, asignacion, adj
         matTemDiv.appendChild(matTemDiv1);
     }
 
+    // Crear la estructura del nombre de la asignacion, indicaciones principales y detalladas, y el tipo de asignacion
     const asignContentDiv = document.createElement('div');
     asignContentDiv.classList.add('asign_content');
     
@@ -306,6 +323,7 @@ function updateCalendar(month, year) {
     updateModals(mes)
 }
 
+// Actualizar los dias de los modals al igual que el texto referente a la semana que pertenecen
 function updateModals(month) {
     for(let i = 1; i <= 5; i++) {
         const dia_in = document.getElementById(`dia_${i}1`);

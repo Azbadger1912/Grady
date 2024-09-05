@@ -118,7 +118,7 @@ function mensaje(remitente, fecha, asunto, persona, contenido) {    // crear men
     rem_mes_cont.appendChild(remit_asunto);
 
     const vista_previa = document.createElement('p');
-    vista_previa.textContent = vist_prev;
+    vista_previa.textContent = contenido;
     rem_mes_cont.appendChild(vista_previa);
 
     const date_new_cont = document.createElement('div');

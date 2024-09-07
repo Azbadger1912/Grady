@@ -226,7 +226,7 @@ header{
     height: 10vh;
 }
 
-@media only screen and (max-width: 650px){
+@media only screen and (max-width: 760px){
     body{
         display: grid;
         grid-template-columns: minmax(50px, auto) auto minmax(50px, auto);
@@ -369,7 +369,7 @@ header{
     }
 }
 
-@media only screen and (min-width: 650px){
+@media only screen and (min-width: 760px){
     body{
         display: grid;
         grid-template-columns: 62px minmax(50px, auto) 300px auto minmax(50px, auto);

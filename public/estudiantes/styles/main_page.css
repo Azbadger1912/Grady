@@ -35,21 +35,6 @@ body::-webkit-scrollbar-button {
     display: none;
 }
 
-.sidebar{ 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 62px;
-    height: 100%;
-    background: #0e8282;
-    padding: 6px 14px;
-    transition: .5s;
-}
-
-.sidebar.active{
-    width: 280px;
-}
-
 .sidebar .logo-menu{
     display: flex;
     align-items: center;
@@ -93,15 +78,6 @@ body::-webkit-scrollbar-button {
     margin-top: 10px;
 }
 
-.list .list-item{
-    list-style: none;
-    width: 100%;
-    height: 50px;
-    margin: 5px 0;
-    line-height: 50px;
-    cursor: pointer;
-}
-
 .list .list-item a{
     display: flex;
     align-items: center;
@@ -136,102 +112,61 @@ font-size: 16px;
     transition-delay: calc(.1s * var(--i));
 }
 
-.list .list-item.active a,
-.list .list-item a:hover{
-    background: #4d8787;
-} 
+
 
 header{
+    grid-area: header;
     display: flex;
+    position: relative;
     background-color: #8ce8e8;
     font-size: 24px;
     color:#ffffff;
-    height: 60px;
-    margin-left: 62px;
-    min-width: 700px;
+    height: 100%;
     align-items: center;
     text-align: right;
+    width: 100%;
+    z-index: 1;
 }
 
 .logo{
     width: 40px;
     align-items: center;
+    margin-right: 10px;
 }
 
-.main-content{
-    display: flex;
-    align-items: center;
-    margin-left: 62px;
-    min-width: 1000px;
-    height: calc(100% - 60px) !important;
-}
-
-.main-content .content{
-    display: flex;
-    background-color: #FFFFff;
-    width: 100%;
-    justify-content: space-around;
-}
-
-.main-content .content .user{
+.user{
+    grid-area: user;
     background-color: #16c4c4;
     border-radius: 16px;
-    padding: 20px 60px;
-    height: 460px;
+    padding: 20px;
     font-size: 18px;
-    margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     line-height: 22px;
+    height: 100%;
+    width: calc(100% - 20px);
+    justify-self: end;
+    align-self: center;
+    margin-right: 20px;
+    
 }
 
-.profile{
-    width: 150px;
-    height: 150px;
-    border-radius: 75px;
+.user .profile{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
     background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 160px;
+    font-size: 150px;
     color: #16c4c4;
 }
-.main-content .content .promedio{
-    background-color: #80dddd;
-    border-radius: 16px;
-    padding: 5px;
-    height: 200px;
-    margin: 20px;
-    align-items: center;
-    min-width: 340px;
-    transition: background 0.3s ease;
-}
 
-.main-content .content .saldo{
-    background-color: #80dddd;
-    border-radius: 16px;
-    padding: 5px;
-    height: 200px;
-    margin: 20px;
-    align-items: center;
-    min-width: 310px;
-    transition: background 0.3s ease;
-}
-
-.main-content .content .actividades{
-    background-color: #80dddd;
-    border-radius: 16px;
-    padding: 5px;
-    height: 200px;
-    margin: 20px;
-    align-items: center;
-    transition: background 0.3s ease;
-}
-
-.main-content .content .actividades:hover, .main-content .content .saldo:hover, .main-content .content .promedio:hover{
+.actividades:hover, .saldo:hover, .promedio:hover{
     background-color: #16c4c4;
 }
 
@@ -240,6 +175,7 @@ header{
     color:#fff;
     text-align: center;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .panel-info{
@@ -251,18 +187,8 @@ header{
     background-color: #ffffff;
     align-items: center;
     text-align: center;
-    height: 153px;
-}
-
-.main-content .content .actividades .boton{
-    border: 2px #80dddd solid;
-    padding: 12px 24px;
-    border-radius: 10px;
-    width: 100px;
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    flex: 1;
+    width: 100%;
 }
 
 .fechas_agen{
@@ -293,4 +219,359 @@ header{
 
 .ver_bol:hover{
     color: #0e8282;
+}
+
+.blanco{
+    grid-area: blanco;
+    height: 10vh;
+}
+
+@media only screen and (max-width: 650px){
+    body{
+        display: grid;
+        grid-template-columns: minmax(50px, auto) auto minmax(50px, auto);
+        grid-template-rows: 80px minmax(100px, auto) auto auto auto auto minmax(100px, auto);
+        grid-template-areas:
+        "header header header"
+        "espacio blanc blank"
+        "espacio user blank"
+        "espacio promedios blank"
+        "espacio saldo blank"
+        "espacio actividades blank"
+        "espacio blanco blank";
+    }
+
+    .sidebar{ 
+        grid-area: sidebar;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 62px;
+        height: 100%;
+        padding: 6px 14px;
+        transition: .5s;
+        z-index: 5;
+    }
+    
+    .sidebar.active{
+        width: 280px;
+        background: #0e8282;
+    }
+    
+    .list .list-item{
+        opacity: 0;
+        pointer-events: none;
+        list-style: none;
+        width: 100%;
+        height: 50px;
+        margin: 5px 0;
+        line-height: 50px;
+        cursor: pointer;
+    }
+
+    .sidebar.active .list .list-item{
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .list .list-item.active a:hover{
+        background: #4d8787;
+    } 
+
+    .user{
+        margin: 0;
+        justify-self: center;
+        max-width: 300px;
+    }
+
+    user .profile{
+        height: 9.4vw !important;
+        width: 9.4vw !important;
+        font-size: 10vw !important;
+    }
+
+    .promedio, .saldo, .actividades{
+        background-color: #80dddd;
+        border-radius: 16px;
+        padding: 5px;
+        align-items: center;
+        transition: background 0.3s ease;
+        align-self: start;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+    }
+    
+    .promedio{
+        grid-area: promedios;
+    }
+    
+    .saldo{
+        grid-area: saldo;
+    }
+    
+    .actividades{
+        grid-area: actividades;
+    }
+
+    .promedio .panel-info, .saldo .panel-info, .actividades .panel-info{
+        padding: 20px 0;
+    }
+
+    .promedio .panel-info{
+        padding: 0 10px;
+    }
+
+    .actividades .panel-info{
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto;
+        grid-template-areas: 
+        "boton"
+        "asignaciones";
+    }
+
+    .actividades .boton{
+        grid-area: boton;
+        border: 2px #80dddd solid;
+        padding: 12px 24px;
+        border-radius: 10px;
+        width: 50%;
+        min-width: 140px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-self: center;
+        align-self: end;
+        height: calc(100% - 10px);
+        margin-bottom: 10px;
+    }
+    
+    .asignaciones{
+        line-height: 33px;
+        grid-area: asignaciones;
+        justify-self: end;
+        text-align: start;
+        width: 90%;
+    }
+
+    .down-arrow, .up-arrow{
+        transform: rotate(-90deg);
+    }
+
+    .down-arrow{
+        margin-left: 10px;
+    }
+
+    .up-arrow{
+        margin-right: 10px;
+    }
+}
+
+@media only screen and (min-width: 650px){
+    body{
+        display: grid;
+        grid-template-columns: 62px minmax(50px, auto) 300px auto minmax(50px, auto);
+        grid-template-rows: 60px minmax(100px, auto) auto 220px 220px;
+        grid-template-areas:
+        "sidebar header header header header"
+        "sidebar espacio blanc blanc blank"
+        "sidebar espacio user promedios blank"
+        "sidebar espacio user saldo blank"
+        "sidebar espacio actividades actividades blank"
+        "sidebar espacio blanco blanco blank";
+    }
+
+    .sidebar{ 
+        grid-area: sidebar;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 62px;
+        height: 100%;
+        background: #0e8282;
+        padding: 6px 14px;
+        transition: .5s;
+        z-index: 5;
+    }
+    
+    .sidebar.active{
+        width: 280px;
+    }
+
+    .list .list-item{
+        list-style: none;
+        width: 100%;
+        height: 50px;
+        margin: 5px 0;
+        line-height: 50px;
+        cursor: pointer;
+    }
+
+    .list .list-item.active a,
+    .list .list-item a:hover{
+        background: #4d8787;
+    } 
+
+    .promedio, .saldo, .actividades{
+        background-color: #80dddd;
+        border-radius: 16px;
+        padding: 5px;
+        height: 100%;
+        align-items: center;
+        transition: background 0.3s ease;
+        align-self: end;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .promedio{
+        grid-area: promedios;
+    }
+    
+    .saldo{
+        margin-top: 20px;
+        height: 200px;
+        grid-area: saldo;
+    }
+    
+    .actividades{
+        grid-area: actividades;
+        align-self: start;
+        height: 200px;
+        margin-top: 20px;
+    }
+
+    .promedio .panel-info{
+        padding: 10px;
+    }
+
+    .actividades .panel-info{
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        grid-template-areas: 
+        "boton asignaciones";
+    }
+
+    .actividades .boton{
+        grid-area: boton;
+        border: 2px #80dddd solid;
+        padding: 12px 24px;
+        border-radius: 10px;
+        width: 100px;
+        margin: 15px;
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+        height: calc(100% - 30px);
+    }
+    
+    .asignaciones{
+        line-height: 33px;
+        grid-area: asignaciones;
+        text-align: start;
+    }
+    
+}
+
+@media only screen and (min-width: 1130px) {
+    body{
+        display: grid;
+        grid-template-columns: 62px minmax(50px, auto) 300px minmax(340px, 400px) minmax(310px, 370px) minmax(50px, auto);
+        grid-template-rows: 60px minmax(100px, auto) 220px 220px minmax(100px, auto);
+        grid-template-areas:
+        "sidebar header header header header header"
+        "sidebar espacio blanc blanc blanc blank"
+        "sidebar espacio user promedios saldo blank"
+        "sidebar espacio user actividades actividades blank"
+        "sidebar espacio blanco blanco blanco blank";
+    }
+
+    .sidebar{ 
+        grid-area: sidebar;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 62px;
+        height: 100%;
+        background: #0e8282;
+        padding: 6px 14px;
+        transition: .5s;
+        z-index: 5;
+    }
+    
+    .sidebar.active{
+        width: 280px;
+    }
+
+    .list .list-item{
+        list-style: none;
+        width: 100%;
+        height: 50px;
+        margin: 5px 0;
+        line-height: 50px;
+        cursor: pointer;
+    }
+    
+    .list .list-item.active a,
+    .list .list-item a:hover{
+        background: #4d8787;
+    } 
+
+    .promedio, .saldo, .actividades{
+        background-color: #80dddd;
+        border-radius: 16px;
+        padding: 5px;
+        height: 100%;
+        align-items: center;
+        transition: background 0.3s ease;
+        align-self: end;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .promedio{
+        grid-area: promedios;
+        margin-right: 20px;
+    }
+    
+    .saldo{
+        grid-area: saldo;
+    }
+    
+    .actividades{
+        grid-area: actividades;
+        align-self: start;
+        height: 200px;
+        margin-top: 20px;
+    }    
+    
+    .actividades .panel-info{
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        grid-template-areas: 
+        "boton asignaciones";
+    }
+
+    .actividades .boton{
+        grid-area: boton;
+        border: 2px #80dddd solid;
+        padding: 12px 24px;
+        border-radius: 10px;
+        width: 100px;
+        margin: 15px;
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+        height: calc(100% - 30px);
+    }
+    
+    .asignaciones{
+        line-height: 33px;
+        grid-area: asignaciones;
+        text-align: start;
+    }
 }

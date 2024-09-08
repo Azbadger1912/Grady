@@ -240,6 +240,7 @@ header.scrolled {
 .lines_asign{
     display: flex;
     width: 90%;
+    margin-bottom: 10px;
 }
 
 .linea{
@@ -351,7 +352,7 @@ header.scrolled {
     }
 
     .promedio .panel-info{
-        padding: 0 10px;
+        padding: 10px 10px;
     }
 
     .actividades .panel-info{
@@ -412,6 +413,8 @@ header.scrolled {
     
         .promedio .panel-info p{
             max-width: 170px;
+            line-height: 25px;
+            margin: 10px 0;
         }
 
         .promedio, .saldo, .actividades, .user{
@@ -432,6 +435,7 @@ header.scrolled {
             display: block;
             width: 60%;
             margin: 0 20%;
+            margin-bottom: 10px;
         }
 
         .lines_asign{
@@ -584,6 +588,7 @@ header.scrolled {
     
     .sidebar.active{
         width: 280px;
+        overflow: scroll;
     }
 
     .list .list-item{

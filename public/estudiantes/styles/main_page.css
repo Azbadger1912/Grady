@@ -145,7 +145,7 @@ header.scrolled {
     grid-area: user;
     background-color: #16c4c4;
     border-radius: 16px;
-    padding: 20px;
+    padding: 40px 0;
     font-size: 18px;
     display: flex;
     flex-direction: column;
@@ -281,6 +281,7 @@ header.scrolled {
     .sidebar.active{
         width: 280px;
         background: #0e8282;
+        overflow: scroll;
     }
     
     .list .list-item{
@@ -411,6 +412,11 @@ header.scrolled {
     
         .promedio .panel-info p{
             max-width: 170px;
+        }
+
+        .promedio, .saldo, .actividades, .user{
+            max-width: 270px;
+            justify-self: center;
         }
 
         .asignaciones{

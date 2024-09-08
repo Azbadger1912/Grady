@@ -282,6 +282,7 @@ header.scrolled {
         width: 280px;
         background: #0e8282;
         overflow: scroll;
+        scrollbar-width: none;
     }
     
     .list .list-item{
@@ -477,11 +478,12 @@ header.scrolled {
         padding: 6px 14px;
         transition: .5s;
         z-index: 5;
+        overflow: scroll;
+        scrollbar-width: none;
     }
     
     .sidebar.active{
         width: 280px;
-        overflow: scroll;
     }
 
     .list .list-item{
@@ -584,11 +586,12 @@ header.scrolled {
         padding: 6px 14px;
         transition: .5s;
         z-index: 5;
+        overflow: scroll;
+        scrollbar-width: none;
     }
     
     .sidebar.active{
         width: 280px;
-        overflow: scroll;
     }
 
     .list .list-item{

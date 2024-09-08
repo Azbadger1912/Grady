@@ -17,6 +17,16 @@ const div = document.getElementById("cuerpo");
 const texto = document.getElementById("tit_colegio");
 const fullText = texto.textContent.trim(); // Guarda el texto completo
 
+const header = document.getElementById('cabecera');
+
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 0) {
+    header.classList.add('scrolled'); // Añade la sombra cuando hay scroll
+  } else {
+    header.classList.remove('scrolled'); // Quita la sombra cuando está en la parte superior
+  }
+});
+
 // Función para generar las iniciales
 function getInitials(text) {
   return text

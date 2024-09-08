@@ -57,7 +57,7 @@ async function updateAsignment() {
                     slots++;
                     const slot = document.getElementById(`slot_num${slots}`);
                     slot.style.color = 'black';
-                    slot.innerHTML = `<span style="color: #15b3b3;">${dato['Materia'].toUpperCase()}</span> | <span style="color: #3ccd00;">${dato['Asignacion'].toUpperCase()}</span>`;
+                    slot.innerHTML = `<span class="materia_asign">${dato['Materia'].toUpperCase()}</span><span class="linea"> | </span><span class="puntos">: </span><span style="color: #3ccd00;">${dato['Asignacion'].toUpperCase()}</span>`;
                 }
             }
         }
@@ -68,7 +68,7 @@ async function updateAsignment() {
                     slots++;
                     const slot = document.getElementById(`slot_num${slots}`);
                     slot.style.color = 'black';
-                    slot.innerHTML = `<span style="color: #15b3b3;">${dato['Materia'].toUpperCase()}</span> | <span style="color: #0588c8;">${dato['Asignacion'].toUpperCase()}</span>`;
+                    slot.innerHTML = `<span class="materia_asign">${dato['Materia'].toUpperCase()}</span><span class="linea"> | </span><span class="puntos">: </span><span style="color: #0588c8;">${dato['Asignacion'].toUpperCase()}</span>`;
                 }
             }
         }

@@ -117,15 +117,22 @@ font-size: 16px;
 header{
     grid-area: header;
     display: flex;
-    position: relative;
+    top: 0;
+    right: 0;
+    position: fixed;
     background-color: #8ce8e8;
     font-size: 24px;
     color:#ffffff;
-    height: 100%;
+    height: 60px;
     align-items: center;
     text-align: right;
     width: 100%;
     z-index: 1;
+    transition: box-shadow 0.3s ease;
+}
+
+header.scrolled {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo{
@@ -226,10 +233,28 @@ header{
     height: 10vh;
 }
 
+.materia_asign{
+    color: #15b3b3;
+}
+
+.lines_asign{
+    display: flex;
+    width: 90%;
+}
+
+.linea{
+    display: inline;
+}
+
+.puntos{
+    display: none;
+    color: #15b3b3;
+}
+
 @media only screen and (max-width: 760px){
     body{
         display: grid;
-        grid-template-columns: minmax(50px, auto) auto minmax(50px, auto);
+        grid-template-columns: minmax(50px, auto) 1fr minmax(50px, auto);
         grid-template-rows: 80px minmax(100px, auto) auto auto auto auto minmax(100px, auto);
         grid-template-areas:
         "header header header"
@@ -278,10 +303,15 @@ header{
         background: #4d8787;
     } 
 
+    header{
+        height: 80px;
+    }
+
     .user{
         margin: 0;
         justify-self: center;
         max-width: 300px;
+        width: none;
     }
 
     user .profile{
@@ -366,6 +396,49 @@ header{
 
     .up-arrow{
         margin-right: 10px;
+    }
+
+    @media only screen and (max-width: 400px){
+        body{
+            grid-template-columns: minmax(20px, auto) 1fr minmax(20px, auto);
+        }
+
+        .user .profile{
+            height: 120px;
+            width: 120px;
+            font-size: 130px;
+        }
+    
+        .promedio .panel-info p{
+            max-width: 170px;
+        }
+
+        .asignaciones{
+            justify-self: center;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .asignaciones p{
+            display: block;
+            width: 60%;
+            margin: 0 20%;
+        }
+
+        .lines_asign{
+            margin-left: 5%;
+        }
+
+        .linea{
+            display: none;
+        }
+        
+        .puntos{
+            display: inline;
+        }
     }
 }
 

@@ -240,7 +240,6 @@ header.scrolled {
 .lines_asign{
     display: flex;
     width: 90%;
-    margin-bottom: 10px;
 }
 
 .linea{
@@ -440,6 +439,7 @@ header.scrolled {
 
         .lines_asign{
             margin-left: 5%;
+            margin-bottom: 10px;
         }
 
         .linea{

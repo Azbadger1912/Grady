@@ -196,6 +196,7 @@ header.scrolled {
     text-align: center;
     flex: 1;
     width: 100%;
+    height: fit-content;
 }
 
 .fechas_agen{
@@ -358,7 +359,7 @@ header.scrolled {
     .actividades .panel-info{
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: auto auto;
+        grid-template-rows: minmax(auto, 70px) auto;
         grid-template-areas: 
         "boton"
         "asignaciones";

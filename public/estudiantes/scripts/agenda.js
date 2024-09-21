@@ -338,6 +338,7 @@ function updateModals(month) {
     }
 }
 
+
 // Función para avanzar al próximo mes
 function nextMonth() {
     if (currentMonth === 12) {

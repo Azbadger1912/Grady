@@ -32,14 +32,14 @@ function getInitials(text) {
   return text
     .split(/\s+/) // Divide el texto en palabras
     .map(word => word[0]) // Obtiene la primera letra de cada palabra
-    .join(''); // Une las iniciales
+    .join('.'); // Une las iniciales
 }
 
 const initials = getInitials(fullText); // Calcula las iniciales
 
 function updateText() {
   if (div.offsetWidth < 700) {
-    texto.textContent = initials; // Muestra las iniciales si el ancho es menor a 700px
+    texto.textContent = initials + "."; // Muestra las iniciales si el ancho es menor a 700px
   } else {
     texto.textContent = fullText; // Muestra el texto completo si el ancho es mayor o igual a 700px
   }

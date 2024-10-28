@@ -270,8 +270,6 @@ function crearAsignacion(materia, tema, ind_prin, ind_det, tipo, asignacion, adj
 
 // Función para actualizar los días del calendario
 function updateCalendar(month, year) {
-    eliminarElementos();
-    fetchData();
     let mes;
     switch (month) {
         case 1: mes = 'Enero'; break;

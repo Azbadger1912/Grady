@@ -126,6 +126,13 @@ function crearPrevAsign(materia, tipo, asignacion) {
     
     const matP = document.createElement('p');
     matP.textContent = materia.toUpperCase();
+    matP.classList.add('tit_mat_prev');
+
+    if (tipo == 1){
+        matP.classList.add('sum_mat');
+    } else {
+        matP.classList.add('form_mat');
+    }
 
     asignDiv.appendChild(matP);
 
@@ -319,7 +326,7 @@ function updateCalendar(month, year) {
     for (let j = 0; j < startDay; j++) {
         days[j].textContent = prevMonthDay++;
     }
-
+    verificarPantalla()
     updateModals(mes)
 }
 
@@ -361,9 +368,37 @@ function prevMonth() {
     updateCalendar(currentMonth, currentYear);
 }
 
+// Función para dejar solo la primera letra en mayúscula de cada elemento con clase ".dia"
+function capitalizarInicial() {
+    const elementosDia = document.querySelectorAll('.calendar .content .dias');
+    elementosDia.forEach(elemento => {
+      let texto = elemento.textContent.trim().toLowerCase();
+      elemento.textContent = texto.charAt(0).toUpperCase();
+    });
+  }
+  
+// Función para dejar solo las primeras tres letras en mayúscula de cada elemento con clase ".materia"
+function abreviarMateria() {
+const elementosMateria = document.querySelectorAll('.tit_mat_prev');
+elementosMateria.forEach(elemento => {
+    let texto = elemento.textContent.trim().toLowerCase();
+    elemento.textContent = texto.slice(0, 3).toUpperCase();
+});
+}
+
+// Verificar si la pantalla es menor a 760px y ejecutar las funciones
+function verificarPantalla() {
+  if (window.matchMedia("(max-width: 760px)").matches) {
+    capitalizarInicial();
+    setTimeout(() => {abreviarMateria();}, 80);
+  }
+}
+
 // Variable global para el mes y año actuales
 let currentMonth = new Date().getUTCMonth() + 1; // 1 a 12
 let currentYear = new Date().getUTCFullYear();
+
+currentMonth = 8;
 
 // Actualizar el calendario al cargar la página
 updateCalendar(currentMonth, currentYear);
@@ -393,3 +428,6 @@ agregarEventosModal(botones_3, modal_container_3, close_3);
 agregarEventosModal(botones_4, modal_container_4, close_4);
 agregarEventosModal(botones_5, modal_container_5, close_5);
 
+// Ejecutar la verificación al cargar la página y cuando se redimensiona la pantalla
+window.addEventListener('load', verificarPantalla);
+window.addEventListener('resize', verificarPantalla);

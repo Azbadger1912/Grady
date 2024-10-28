@@ -563,7 +563,7 @@ header.scrolled {
     
 }
 
-@media only screen and (min-width: 1130px) {
+@media only screen and (min-width: 1140px) {
     body{
         display: grid;
         grid-template-columns: 62px minmax(50px, auto) 300px minmax(340px, 400px) minmax(310px, 370px) minmax(50px, auto);

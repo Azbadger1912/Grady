@@ -912,7 +912,7 @@ header.scrolled {
         max-height: 80%;
         padding: 2%;
         display: grid;
-        grid-template-rows: minmax(15px,5%) minmax(40px,10%) 1fr;
+        grid-template-rows: minmax(15px,5%) auto 1fr;
         grid-template-areas:
         "boton"
         "semana"
@@ -1279,6 +1279,14 @@ header.scrolled {
     .tit_mat_prev{
         font-size: 8px;
     }
+
+    @media only screen and (max-height: 400px){
+        .semana_tit{
+            font-size: 14px;
+            width: 80%;
+            margin-left: 10%;
+        }
+    }
     
 }
 
@@ -1416,7 +1424,7 @@ header.scrolled {
         max-height: 80%;
         padding: 1%;
         display: grid;
-        grid-template-rows: 30px 80px 1fr;
+        grid-template-rows: 30px 40px 1fr;
         grid-template-areas:
         "boton"
         "semana"

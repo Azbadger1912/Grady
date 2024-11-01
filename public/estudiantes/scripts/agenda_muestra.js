@@ -156,16 +156,30 @@ function crearPrevAsign(materia, tipo, asignacion) {
 // Evaluar si el dia sobrepasa las 3 asignacion mediante el tamaño esperado
 function evalTam(content, divCreado){
     
-    if (content.scrollHeight > 100 && content.scrollHeight < 170) {
-        const tresPuntos = document.createElement('p');
-        tresPuntos.textContent = '...';
-        tresPuntos.style.fontSize = '14px';
-        tresPuntos.style.marginBottom = '8px';
-        tresPuntos.classList.add('generated-element');
-        content.appendChild(tresPuntos);
-    } else if (content.scrollHeight < 120){
-        content.appendChild(divCreado);
+    if ((window.matchMedia("(min-width: 1140px)").matches) ||  (window.matchMedia("(min-width: 760px)").matches)) {
+        if (content.scrollHeight > 100 && content.scrollHeight < 170) {
+            const tresPuntos = document.createElement('p');
+            tresPuntos.textContent = '...';
+            tresPuntos.style.fontSize = '14px';
+            tresPuntos.style.marginBottom = '8px';
+            tresPuntos.classList.add('generated-element');
+            content.appendChild(tresPuntos);
+        } else if (content.scrollHeight < 120){
+            content.appendChild(divCreado);
+        }
+    } else {
+        if (content.scrollHeight > 56 && content.scrollHeight < 80) {
+            const tresPuntos = document.createElement('p');
+            tresPuntos.textContent = '...';
+            tresPuntos.style.fontSize = '14px';
+            tresPuntos.style.marginBottom = '8px';
+            tresPuntos.classList.add('generated-element');
+            content.appendChild(tresPuntos);
+        } else if (content.scrollHeight < 58){
+            content.appendChild(divCreado);
+        };
     }
+    
 
 
 }
@@ -177,19 +191,18 @@ function crearAsignacion(materia, tema, ind_prin, ind_det, tipo, asignacion, adj
     asignacionDiv.classList.add('one_asig_modal_content');
     
     // Crear la estructura de la materia, tema y boton de archivo adjunto
-    const matTemDiv = document.createElement('div');
-    matTemDiv.classList.add('mat_tem');
-    
-    const matTemDiv1 = document.createElement('div');
-    matTemDiv1.classList.add('mat_tem_1');
-
     const fontMatP = document.createElement('p');
     fontMatP.classList.add('font_mat');
     fontMatP.textContent = materia.toUpperCase();
 
+    const temaDiv = document.createElement('div');
+    temaDiv.classList.add('font_tem');
     const temaP = document.createElement('p');
-    temaP.style.fontSize = '12px';
     temaP.textContent = tema.toUpperCase();
+    temaDiv.appendChild(temaP);
+
+    const temaLinea = document.createElement('hr');
+    temaLinea.classList.add('linea_tema');
 
     if (adjunto == 1){
         const adjunBotonDiv = document.createElement('div');
@@ -197,25 +210,17 @@ function crearAsignacion(materia, tema, ind_prin, ind_det, tipo, asignacion, adj
         
         const icon = document.createElement('i');
         icon.classList.add('bx', 'bx-paperclip');
-        icon.style.fontSize = '20px';
-        icon.style.paddingRight = '10px';
+        icon.classList.add('adjun_icon');
         
         const adjunTexto = document.createElement('p');
-        adjunTexto.style.fontSize = '12px';
+        adjunTexto.classList.add('adjun_font');
         adjunTexto.innerHTML = `Descargar<br>archivo adjunto`;
-        
 
-        matTemDiv1.appendChild(fontMatP);
-        matTemDiv1.appendChild(temaP);
-        matTemDiv.appendChild(matTemDiv1);
         adjunBotonDiv.appendChild(icon);
         adjunBotonDiv.appendChild(adjunTexto);
-        matTemDiv.appendChild(adjunBotonDiv);
+        asignacionDiv.appendChild(adjunBotonDiv);
     } else {
-        matTemDiv1.style.height = '160px';
-        matTemDiv1.appendChild(fontMatP);
-        matTemDiv1.appendChild(temaP);
-        matTemDiv.appendChild(matTemDiv1);
+        asignacionDiv.classList.add('grid_with_buttom');
     }
 
     // Crear la estructura del nombre de la asignacion, indicaciones principales y detalladas, y el tipo de asignacion
@@ -236,40 +241,32 @@ function crearAsignacion(materia, tema, ind_prin, ind_det, tipo, asignacion, adj
         asignTitSumDiv.appendChild(asignTitSumP);
     }
     
-    const indicacionesDiv = document.createElement('div');
-    indicacionesDiv.style.display = 'flex';
-    indicacionesDiv.style.marginTop = '10px';
-    
     const indicacionesTitleDiv = document.createElement('div');
     indicacionesTitleDiv.classList.add('ind_prin');
-
     const indicacionesTitleH4 = document.createElement('p');
     indicacionesTitleH4.textContent = ind_prin;
-
     indicacionesTitleDiv.appendChild(indicacionesTitleH4);
     
     const indicacionesContentDiv = document.createElement('div');
     indicacionesContentDiv.classList.add('ind_des');
-    
     const indicacionesContentP = document.createElement('p');
     indicacionesContentP.textContent = ind_det;
-    
     indicacionesContentDiv.appendChild(indicacionesContentP);
     
-    indicacionesDiv.appendChild(indicacionesTitleDiv);
-    indicacionesDiv.appendChild(indicacionesContentDiv);
-    
-    asignContentDiv.appendChild(asignTitSumDiv);
-    asignContentDiv.appendChild(indicacionesDiv);
-    
-    asignacionDiv.appendChild(matTemDiv);
-    asignacionDiv.appendChild(asignContentDiv);
+    asignacionDiv.appendChild(fontMatP);
+    asignacionDiv.appendChild(temaDiv);
+    asignacionDiv.appendChild(temaLinea);
+    asignacionDiv.appendChild(asignTitSumDiv);
+    asignacionDiv.appendChild(indicacionesTitleDiv);
+    asignacionDiv.appendChild(indicacionesContentDiv);
     
     return asignacionDiv;
 }
 
 // Función para actualizar los días del calendario
 function updateCalendar(month, year) {
+    eliminarElementos();
+    fetchData();
     let mes;
     switch (month) {
         case 1: mes = 'Enero'; break;
@@ -370,31 +367,59 @@ function prevMonth() {
 function capitalizarInicial() {
     const elementosDia = document.querySelectorAll('.calendar .content .dias');
     elementosDia.forEach(elemento => {
-      let texto = elemento.textContent.trim().toLowerCase();
-      elemento.textContent = texto.charAt(0).toUpperCase();
+        if (!elemento.dataset.originalText) {
+            elemento.dataset.originalText = elemento.textContent.trim();
+        }
+        let texto = elemento.dataset.originalText.toLowerCase();
+        elemento.textContent = texto.charAt(0).toUpperCase();
     });
-  }
-  
+}
+
 // Función para dejar solo las primeras tres letras en mayúscula de cada elemento con clase ".materia"
 function abreviarMateria() {
-const elementosMateria = document.querySelectorAll('.tit_mat_prev');
-elementosMateria.forEach(elemento => {
-    let texto = elemento.textContent.trim().toLowerCase();
-    elemento.textContent = texto.slice(0, 3).toUpperCase();
-});
+    const elementosMateria = document.querySelectorAll('.tit_mat_prev');
+    elementosMateria.forEach(elemento => {
+        if (!elemento.dataset.originalText) {
+            elemento.dataset.originalText = elemento.textContent.trim();
+        }
+        let texto = elemento.dataset.originalText.toLowerCase();
+        elemento.textContent = texto.slice(0, 3).toUpperCase();
+    });
+}
+
+// Función para restaurar el texto original
+function restaurarTextoOriginal() {
+    const elementosDia = document.querySelectorAll('.calendar .content .dias');
+    const elementosMateria = document.querySelectorAll('.tit_mat_prev');
+
+    elementosDia.forEach(elemento => {
+        if (elemento.dataset.originalText) {
+            elemento.textContent = elemento.dataset.originalText;
+        }
+    });
+
+    elementosMateria.forEach(elemento => {
+        if (elemento.dataset.originalText) {
+            elemento.textContent = elemento.dataset.originalText;
+        }
+    });
 }
 
 // Verificar si la pantalla es menor a 760px y ejecutar las funciones
 function verificarPantalla() {
-  if (window.matchMedia("(max-width: 760px)").matches) {
-    capitalizarInicial();
-    setTimeout(() => {abreviarMateria();}, 80);
-  }
+    if (window.matchMedia("(max-width: 760px)").matches) {
+        capitalizarInicial();
+        setTimeout(() => { abreviarMateria(); }, 80);
+    } else {
+        restaurarTextoOriginal();
+    }
 }
 
 // Variable global para el mes y año actuales
 let currentMonth = new Date().getUTCMonth() + 1; // 1 a 12
 let currentYear = new Date().getUTCFullYear();
+
+currentMonth = 8;
 
 // Actualizar el calendario al cargar la página
 updateCalendar(currentMonth, currentYear);

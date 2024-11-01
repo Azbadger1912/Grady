@@ -268,6 +268,8 @@ function updateCalendar(month, year) {
     // eliminarElementos();
     // fetchData();
     let mes;
+    let mesAnt;
+    let mesPro;
     switch (month) {
         case 1: mes = 'Enero'; break;
         case 2: mes = 'Febrero'; break;
@@ -281,6 +283,36 @@ function updateCalendar(month, year) {
         case 10: mes = 'Octubre'; break;
         case 11: mes = 'Noviembre'; break;
         case 12: mes = 'Diciembre'; break;
+    }
+
+    switch (month - 1) {
+        case 0: mesAnt = 'Diciembre'; break;
+        case 1: mesAnt = 'Enero'; break;
+        case 2: mesAnt = 'Febrero'; break;
+        case 3: mesAnt = 'Marzo'; break;
+        case 4: mesAnt = 'Abril'; break;
+        case 5: mesAnt = 'Mayo'; break;
+        case 6: mesAnt = 'Junio'; break;
+        case 7: mesAnt = 'Julio'; break;
+        case 8: mesAnt = 'Agosto'; break;
+        case 9: mesAnt = 'Septiembre'; break;
+        case 10: mesAnt = 'Octubre'; break;
+        case 11: mesAnt = 'Noviembre'; break;
+    }
+
+    switch (month + 1) {
+        case 2: mesPro = 'Febrero'; break;
+        case 3: mesPro = 'Marzo'; break;
+        case 4: mesPro = 'Abril'; break;
+        case 5: mesPro = 'Mayo'; break;
+        case 6: mesPro = 'Junio'; break;
+        case 7: mesPro = 'Julio'; break;
+        case 8: mesPro = 'Agosto'; break;
+        case 9: mesPro = 'Septiembre'; break;
+        case 10: mesPro = 'Octubre'; break;
+        case 11: mesPro = 'Noviembre'; break;
+        case 12: mesPro = 'Diciembre'; break;
+        case 13: mesPro = 'Enero'; break;
     }
 
     const titulo = document.getElementById('tit_mes_ahno');
@@ -322,20 +354,29 @@ function updateCalendar(month, year) {
         days[j].textContent = prevMonthDay++;
     }
     verificarPantalla()
-    updateModals(mes)
+    updateModals(mes, mesAnt, mesPro)
 }
 
 // Actualizar los dias de los modals al igual que el texto referente a la semana que pertenecen
-function updateModals(month) {
+function updateModals(month, monthBef, monthNext) {
     for(let i = 1; i <= 5; i++) {
         const dia_in = document.getElementById(`dia_${i}1`);
         const dia_fin = document.getElementById(`dia_${i}5`);
         const semana = document.getElementById(`semana_${i}`);
-        semana.textContent = `SEMANA DEL LUNES ${dia_in.textContent} DE ${month.toUpperCase()} AL VIERNES ${dia_fin.textContent} DE ${month.toUpperCase()} (${currentYear})`;
-        for(let j = 1; j <=5; j++) {
-            const dia = document.getElementById(`dia_${i}${j}`);
-            const modal_dia = document.getElementById(`fecha_modal_${i}${j}`);
-            modal_dia.textContent = dia.textContent;
+
+        if (parseInt(dia_in.textContent, 10) > 20 && parseInt(dia_fin.textContent, 10) < 20 && i == 1) {
+            semana.textContent = `SEMANA DEL LUNES ${dia_in.textContent} DE ${monthBef.toUpperCase()} AL VIERNES ${dia_fin.textContent} DE ${month.toUpperCase()} (${currentYear})`;
+        } else if (parseInt(dia_in.textContent, 10) > 20 && parseInt(dia_fin.textContent, 10) < 20 && i == 5) {
+            semana.textContent = `SEMANA DEL LUNES ${dia_in.textContent} DE ${month.toUpperCase()} AL VIERNES ${dia_fin.textContent} DE ${monthNext.toUpperCase()} (${currentYear})`;
+        } else if (parseInt(dia_in.textContent, 10) < 15 && parseInt(dia_fin.textContent, 10) < 15 && i == 5){
+            semana.textContent = `SEMANA DEL LUNES ${dia_in.textContent} DE ${monthNext.toUpperCase()} AL VIERNES ${dia_fin.textContent} DE ${monthNext.toUpperCase()} (${currentYear})`;
+        } else {
+            semana.textContent = `SEMANA DEL LUNES ${dia_in.textContent} DE ${month.toUpperCase()} AL VIERNES ${dia_fin.textContent} DE ${month.toUpperCase()} (${currentYear})`;
+            for (let j = 1; j <=5; j++) {
+                const dia = document.getElementById(`dia_${i}${j}`);
+                const modal_dia = document.getElementById(`fecha_modal_${i}${j}`);
+                modal_dia.textContent = dia.textContent;
+            }
         }
     }
 }

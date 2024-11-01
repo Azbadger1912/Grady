@@ -273,21 +273,29 @@ header.scrolled {
         top: 0;
         left: 0;
         width: 62px;
-        height: 100%;
+        height: 80px;
         padding: 6px 14px;
-        transition: .5s;
         z-index: 5;
     }
     
     .sidebar.active{
+        z-index: 20;
         width: 280px;
         background: #0e8282;
         overflow: scroll;
         scrollbar-width: none;
     }
+
+    .sidebar.transition{
+        transition: .5s;
+    }
+
+    .sidebar.z-index-active {
+        height: 100%; /* Cambia inmediatamente el z-index */
+    }
     
     .list .list-item{
-        opacity: 0;
+        display: none;
         pointer-events: none;
         list-style: none;
         width: 100%;
@@ -298,7 +306,7 @@ header.scrolled {
     }
 
     .sidebar.active .list .list-item{
-        opacity: 1;
+        display: block;
         pointer-events: all;
     }
 

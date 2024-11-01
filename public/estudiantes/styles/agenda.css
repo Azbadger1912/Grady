@@ -141,7 +141,11 @@ header.scrolled {
     margin-right: 10px;
 }
 
-@media only screen and (max-width: 760px){
+.linea_tema{
+    display: none;
+}
+
+@media only screen and (max-width: 759px){
     body{
         display: grid;
         grid-template-columns: auto;
@@ -158,21 +162,29 @@ header.scrolled {
         top: 0;
         left: 0;
         width: 62px;
-        height: 100%;
+        height: 80px;
         padding: 6px 14px;
-        transition: .5s;
         z-index: 5;
     }
     
     .sidebar.active{
+        z-index: 20;
         width: 280px;
         background: #0e8282;
         overflow: scroll;
         scrollbar-width: none;
     }
+
+    .sidebar.transition{
+        transition: .5s;
+    }
+
+    .sidebar.z-index-active {
+        height: 100%; /* Cambia inmediatamente el z-index */
+    }
     
     .list .list-item{
-        opacity: 0;
+        display: none;
         pointer-events: none;
         list-style: none;
         width: 100%;
@@ -183,7 +195,7 @@ header.scrolled {
     }
 
     .sidebar.active .list .list-item{
-        opacity: 1;
+        display: block;
         pointer-events: all;
     }
 
@@ -208,6 +220,7 @@ header.scrolled {
     .calendar_div{
         grid-area: page_content;
         width: 100%;
+        position: relative;
     }
 
     .month_changer{
@@ -269,6 +282,14 @@ header.scrolled {
         display: none;
     }
 
+    .btn_tbl_1, .btn_tbl_2, .btn_tbl_3, .btn_tbl_4, .btn_tbl_5{
+        background-color: #ddf1f1;
+        border: 0;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+    }
+
     .modal-container {
         display: none;
         background-color: rgba(0,0,0,0.3);
@@ -280,23 +301,77 @@ header.scrolled {
         pointer-events: none;
         width: 100%;
         height: 100%;
+        z-index: 30;
 
     }
 
     .modal{
         background-color: white;
         width: 85%;
-        min-width: 800px;
-        padding: 30px 50px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        height: 200vh;
         border-radius: 10px;
         max-height: 80%;
+        padding: 2%;
+        display: grid;
+        grid-template-rows: 20px auto 1fr;
+        grid-template-areas:
+        "boton"
+        "semana"
+        "dias_semana";
+    }
+
+    .boton_cerrar{
+        grid-area: boton;
+        display: flex;
+        width: 100%;
+        justify-content: right;
+    }
+
+    .boton_cerrar button i{
+        color: #000;
+        transition: .3s ease;
+    }
+
+    .boton_cerrar button i:hover{
+        color: #16c4c4;
+    }
+
+    .semana_tit{
+        grid-area: semana;
+        color: #0e8282;
+        width: 80%;
+        margin-left: 10%;
+        overflow: auto;
+        margin-bottom: 15px;
+        font-size: 12px;
+    }
+
+    .semana_tit::-webkit-scrollbar {
+        width: 10px; height: 10px;
+        
+    }
+
+    .semana_tit::-webkit-scrollbar-track {
+        background-color: #fff;
+    }
+
+    .semana_tit::-webkit-scrollbar-thumb {
+        background-color: #8ce8e8;
+        border-radius: 10px;
+        border: 3px solid #fff; /* Coloca un borde igual al color del track */
+        transition: background-color 0.3s ease; /* Suaviza la transición del color */
+    }
+
+    .semana_tit::-webkit-scrollbar-thumb:active {
+        background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+    }
+
+    .semana_tit::-webkit-scrollbar-button {
+        display: none;
     }
 
     .modal_content {
-        padding-right: 1%;
-        height: 85%;
+        grid-area: dias_semana;
         overflow: auto;
         display: flex;
         flex-direction: column;
@@ -325,192 +400,256 @@ header.scrolled {
         display: none;
     }
 
-    .btn_tbl_1, .btn_tbl_2, .btn_tbl_3, .btn_tbl_4, .btn_tbl_5{
-        background-color: #ddf1f1;
-        border: 0;
-        font-size: 16px;
-        cursor: pointer;
-        width: 100%;
-    }
-
     .show{
         pointer-events: auto;
         display: flex;
     }
 
+    .dias_asignacion{
+        display: grid;
+        justify-content: center;
+        grid-template-rows: auto auto;
+        grid-template-columns: 100%;
+        grid-template-areas:
+        "dia_fecha_grid"
+        "asignacion_grid";
+    }
+
     .dia_fecha_modal_content{
-        width: 170px;
-        justify-content: space-around;
+        background-color: #0e8282;
+        justify-self: center;
+        width: fit-content;
+        grid-area: dia_fecha_grid;
+        border-radius: 20px;
+        padding-left: 15px;
+        height: 40px;
+        margin-bottom: 10px;
         align-items: center;
         text-align: center;
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: auto auto;
+        grid-template-areas:
+        "dia_grid fecha_grid";
     }
 
     .dia_modal_content{
-        font-size: 20px;
-        color: #16c4c4;
+        font-size: 12px;
+        color: #fff;
+        grid-area: dia_grid;
+        margin-right: 10px;
     }
 
-    .asig_modal_content_in{
+    .fecha_modal_content{
+        grid-area: fecha_grid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        color: #fff;
+        background-color: #16c4c4;
+    }
+
+    .asig_modal_content, .asig_modal_content_in, .asig_modal_content_fi{
+        grid-area: asignacion_grid;
         background-color: #ddf1f1;
         width: 100%;
         padding: 10px;
-        padding-bottom: 3%;
-        margin-left: 10px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    .asig_modal_content{
-        background-color: #ddf1f1;
-        width: 100%;
-        padding: 10px;
-        padding-bottom: 3%;
-        margin-left: 10px;
-    }
-
-    .asig_modal_content_fi{
-        background-color: #ddf1f1;
-        width: 100%;
-        padding: 10px;
-        padding-bottom: 0;
-        margin-left: 10px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
+        padding-bottom: 0px;
+        border-radius: 10px;
+        margin-bottom: 25px;
     }
 
     .one_asig_modal_content{
-        display: flex;
+        display: grid;
         background-color: white;
         width: 100%;
-        height: 180px;
-        align-items: center;
-        min-height: 130px;
+        height: fit-content;
+        min-height: 120px;
         padding: 10px;
         border-radius: 10px;
         margin-bottom: 10px;
+        grid-template-columns: auto;
+        grid-template-rows: 22px auto auto auto auto auto auto;
+        grid-template-areas: 
+        "materia"
+        "tipo_tit"
+        "tema"
+        "linea"
+        "indi_princ"
+        "indi_deta"
+        "adjun";
+    }
+
+    .grid_with_buttom{
+        grid-template-rows: 22px auto auto auto auto auto;
+        grid-template-areas: 
+        "materia"
+        "tipo_tit"
+        "tema"
+        "linea"
+        "indi_princ"
+        "indi_deta";
     }
 
     .adjun_boton{
+        grid-area: adjun;
         color: white;
-        width: 180px;
+        width: 100%;
         background-color: #0e8282;
-        height: 50px;
-        padding: 10px;
+        padding: 8px;
         align-items: center;
         display: flex;
         border-radius: 10px;
-        position: absolute;
-        bottom: 0;
         cursor: pointer;
         transition: background 0.3s ease;
+        margin-top: 10px;
     }
 
     .adjun_boton:hover{
         background-color: #16c4c4;
     }
 
+    .adjun_icon{
+        font-size: 18px;
+        padding-right: 10px;
+    }
+
+    .adjun_font{
+        font-size: 10px;
+    }
+
     .asign_content{
+        grid-area: contenido_asign;
         margin-left: 50px;
         height: 100%;
         flex-grow: 1;
     }
 
-    .asign_tit_form{
-        font-size: 20px;
-        color: white;
-        padding: 7px;
-        border-radius: 10px;
-        max-height: 40px;
-        background-color: #0588c8;
+    .font_mat{
+        grid-area: materia;
+        font-size: 14px;
+        color: #16c4c4;
+        margin-bottom: 4px;
     }
 
-    .asign_tit_sum{
-        font-size: 20px;
-        color: white;
-        padding: 7px;
-        border-radius: 10px;
-        max-height: 40px;
-        background-color: #3ccd00;
-    }
-
-    .mat_tem {
-        min-height: 130px;
-        width: 182px;
-        height: 100% ;
+    .font_tem{
+        grid-area: tema;
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-height: 100px;
+        padding: 4px 0;
         position: relative;
-    }
-
-    .mat_tem_1{
-        height: 104px;
         overflow: auto;
+        font-size: 10px;
     }
 
-    .mat_tem_1::-webkit-scrollbar {
+    .font_tem::-webkit-scrollbar {
         width: 10px; height: 10px;
         
     }
 
-    .mat_tem_1::-webkit-scrollbar-track {
+    .font_tem::-webkit-scrollbar-track {
         background-color: #fff;
     }
 
-    .mat_tem_1::-webkit-scrollbar-thumb {
+    .font_tem::-webkit-scrollbar-thumb {
         background-color: #8ce8e8;
         border-radius: 10px;
         border: 3px solid #fff; /* Coloca un borde igual al color del track */
         transition: background-color 0.3s ease; /* Suaviza la transición del color */
     }
 
-    .mat_tem_1::-webkit-scrollbar-thumb:active {
+    .font_tem::-webkit-scrollbar-thumb:active {
         background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
     }
 
-    .mat_tem_1::-webkit-scrollbar-button {
+    .font_tem::-webkit-scrollbar-button {
         display: none;
     }
-
-    .font_mat{
-        font-size: 18px;
-        color: #16c4c4;
-        margin-bottom: 10px;
+    
+    .linea_tema{
+        display: inline;
+        grid-area: linea;
+        height: 3px;
+        border-radius: 1.5px;
+        color: #000;
+        background-color: #e1e1e1;
+        border: none;
+        align-self: center;
+        margin: 4px 0;
+        margin-bottom: 8px;
     }
 
-    .ind_des{
+    .asign_tit_form, .asign_tit_sum{
+        grid-area: tipo_tit;
         font-size: 12px;
-        margin-left: 5%;
-        max-width: 30vw;
-        height: 110px;
-        overflow: auto;
+        color: white;
+        padding: 7px;
+        border-radius: 10px;
+        height: fit-content;
     }
 
-    .ind_des::-webkit-scrollbar {
+    .asign_tit_form{
+        background-color: #0588c8;
+    }
+
+    .asign_tit_sum{
+        background-color: #3ccd00;
+    }
+    
+    .ind_des{
+        grid-area: indi_deta;
+        font-size: 10px;
+        height: 100%;
+        width: 100%;
+        max-height: 120px;
+        overflow: auto;
+        background-color: #e1e1e1;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .ind_des p{
+        overflow: auto;
+        max-height: 100px;
+        background-color: #e1e1e1;
+    }
+
+    .ind_des p::-webkit-scrollbar {
         width: 10px; height: 10px;
     }
 
-    .ind_des::-webkit-scrollbar-track {
-        background-color: #fff;
+    .ind_des p::-webkit-scrollbar-track {
+        background-color: #e1e1e1;
     }
 
-    .ind_des::-webkit-scrollbar-thumb {
-        background-color: #8ce8e8;
+    .ind_des p::-webkit-scrollbar-thumb {
+        background-color: #999;
         border-radius: 10px;
-        border: 3px solid #fff; /* Coloca un borde igual al color del track */
+        border: 3px solid #e1e1e1; /* Coloca un borde igual al color del track */
         transition: background-color 0.3s ease; /* Suaviza la transición del color */
     }
 
-    .ind_des::-webkit-scrollbar-thumb:active {
-        background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+    .ind_des p::-webkit-scrollbar-thumb:active {
+        background-color: #666666; /* Cambia el color del thumb al ser presionado */
     }
 
-    .ind_des::-webkit-scrollbar-button {
+    .ind_des p::-webkit-scrollbar-button {
         display: none;
     }
 
     .ind_prin{
-        font-size: 14px;
-        width: 17vw;
-        height: 110px;
+        grid-area: indi_princ;
+        font-size: 12px;
+        height: 100%;
+        width: 100%;
+        max-height: 100px;
         overflow: auto;
+        margin-bottom: 10px;
     }
 
     .ind_prin::-webkit-scrollbar {
@@ -585,10 +724,62 @@ header.scrolled {
         .month_name{
             width: 150px;
         }
+
+        .modal{
+            grid-template-rows: 18px auto 1fr;
+        }
+
+        .boton_cerrar button i{
+            font-size: 18px;
+        }
+
+        .semana_tit{
+            font-size: 10px;
+        }
+
+        .dia_fecha_modal_content{
+            border-radius: 25px;
+            padding-left: 15px;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+    
+        .dia_modal_content{
+            font-size: 10px;
+            margin-right: 10px;
+        }
+    
+        .fecha_modal_content{
+            font-size: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+        }
+
+        .asign_tit_form, .asign_tit_sum{
+            font-size: 10px;
+        }
+
+        .font_mat{
+            font-size: 10px;
+        }
+
+        .font_tem{
+            font-size: 9px;
+        }
+
+        .ind_prin{
+            font-size: 9px;
+        }
+
+        .ind_des p{
+            font-size: 8px;
+        }
+
     }
 }
 
-@media only screen and (min-width: 760px){
+@media (min-width: 760px) and (max-width: 1139px){
     body{
         display: grid;
         grid-template-columns: 62px auto;
@@ -689,7 +880,7 @@ header.scrolled {
         text-align: center;
         padding-top: 10px;
         vertical-align: top;
-        height: 180px;
+        height: 160px;
         max-height: 110px;
         overflow: hidden;
     }  
@@ -709,23 +900,76 @@ header.scrolled {
         pointer-events: none;
         width: 100%;
         height: 100%;
+        z-index: 30;
 
     }
 
     .modal{
         background-color: white;
         width: 85%;
-        min-width: 800px;
-        padding: 30px 50px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        height: 200vh;
         border-radius: 10px;
         max-height: 80%;
+        padding: 2%;
+        display: grid;
+        grid-template-rows: minmax(15px,5%) minmax(40px,10%) 1fr;
+        grid-template-areas:
+        "boton"
+        "semana"
+        "dias_semana";
+    }
+
+    .boton_cerrar{
+        grid-area: boton;
+        display: flex;
+        width: 100%;
+        justify-content: right;
+    }
+
+    .boton_cerrar button i{
+        color: #000;
+        transition: .3s ease;
+    }
+
+    .boton_cerrar button i:hover{
+        color: #16c4c4;
+    }
+
+    .semana_tit{
+        grid-area: semana;
+        color: #0e8282;
+        width: 60%;
+        margin-left: 20%;
+        overflow: auto;
+        margin-bottom: 15px;
+    }
+
+    .semana_tit::-webkit-scrollbar {
+        width: 10px; height: 10px;
+        
+    }
+
+    .semana_tit::-webkit-scrollbar-track {
+        background-color: #fff;
+    }
+
+    .semana_tit::-webkit-scrollbar-thumb {
+        background-color: #8ce8e8;
+        border-radius: 10px;
+        border: 3px solid #fff; /* Coloca un borde igual al color del track */
+        transition: background-color 0.3s ease; /* Suaviza la transición del color */
+    }
+
+    .semana_tit::-webkit-scrollbar-thumb:active {
+        background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
+    }
+
+    .semana_tit::-webkit-scrollbar-button {
+        display: none;
     }
 
     .modal_content {
-        padding-right: 1%;
-        height: 85%;
+        grid-area: dias_semana;
         overflow: auto;
         display: flex;
         flex-direction: column;
@@ -767,148 +1011,190 @@ header.scrolled {
         display: flex;
     }
 
+    .dias_asignacion{
+        display: grid;
+        justify-content: center;
+        grid-template-rows: auto auto;
+        grid-template-columns: 100%;
+        grid-template-areas:
+        "dia_fecha_grid"
+        "asignacion_grid";
+    }
+
     .dia_fecha_modal_content{
-        width: 170px;
-        justify-content: space-around;
+        background-color: #0e8282;
+        justify-self: center;
+        width: fit-content;
+        grid-area: dia_fecha_grid;
+        border-radius: 25px;
+        padding-left: 15px;
+        height: 50px;
+        margin-bottom: 15px;
         align-items: center;
         text-align: center;
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: auto auto;
+        grid-template-areas:
+        "dia_grid fecha_grid";
     }
 
     .dia_modal_content{
-        font-size: 20px;
-        color: #16c4c4;
+        font-size: 18px;
+        color: #fff;
+        grid-area: dia_grid;
+        margin-right: 10px;
     }
 
-    .asig_modal_content_in{
+    .fecha_modal_content{
+        grid-area: fecha_grid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 50px;
+        border-radius: 25px;
+        color: #fff;
+        background-color: #16c4c4;
+    }
+
+    .asig_modal_content, .asig_modal_content_in, .asig_modal_content_fi{
+        grid-area: asignacion_grid;
         background-color: #ddf1f1;
         width: 100%;
         padding: 10px;
-        padding-bottom: 3%;
-        margin-left: 10px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    .asig_modal_content{
-        background-color: #ddf1f1;
-        width: 100%;
-        padding: 10px;
-        padding-bottom: 3%;
-        margin-left: 10px;
-    }
-
-    .asig_modal_content_fi{
-        background-color: #ddf1f1;
-        width: 100%;
-        padding: 10px;
-        padding-bottom: 0;
-        margin-left: 10px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
+        padding-bottom: 0px;
+        border-radius: 10px;
+        margin-bottom: 35px;
     }
 
     .one_asig_modal_content{
-        display: flex;
+        display: grid;
         background-color: white;
         width: 100%;
-        height: 180px;
-        align-items: center;
+        height: 120px;
         min-height: 130px;
         padding: 10px;
         border-radius: 10px;
         margin-bottom: 10px;
+        grid-template-columns: minmax(150px, 20%) minmax(30px, auto) auto auto;
+        grid-template-rows: 22px 16px 34px 34px;
+        grid-template-areas: 
+        "materia blank tipo_tit tipo_tit"
+        "tema blank tipo_tit tipo_tit"
+        "tema blank indi_princ indi_deta"
+        "adjun blank indi_princ indi_deta"
+        ;
+    }
+
+    .grid_with_buttom{
+        grid-template-rows: 22px 16px 68px;
+        grid-template-areas: 
+        "materia blank tipo_tit tipo_tit"
+        "tema blank tipo_tit tipo_tit"
+        "tema blank indi_princ indi_deta";
     }
 
     .adjun_boton{
+        grid-area: adjun;
         color: white;
-        width: 180px;
+        width: 150px;
         background-color: #0e8282;
-        height: 50px;
-        padding: 10px;
+        height: 34px;
+        padding: 8px;
         align-items: center;
         display: flex;
         border-radius: 10px;
-        position: absolute;
-        bottom: 0;
         cursor: pointer;
         transition: background 0.3s ease;
+        margin-top: 4px;
     }
 
     .adjun_boton:hover{
         background-color: #16c4c4;
     }
 
+    .adjun_icon{
+        font-size: 18px;
+        padding-right: 10px;
+    }
+
+    .adjun_font{
+        font-size: 10px;
+    }
+
     .asign_content{
+        grid-area: contenido_asign;
         margin-left: 50px;
         height: 100%;
         flex-grow: 1;
     }
 
-    .asign_tit_form{
-        font-size: 20px;
-        color: white;
-        padding: 7px;
-        border-radius: 10px;
-        max-height: 40px;
-        background-color: #0588c8;
+    .font_mat{
+        grid-area: materia;
+        font-size: 14px;
+        color: #16c4c4;
+        margin-bottom: 4px;
     }
 
-    .asign_tit_sum{
-        font-size: 20px;
-        color: white;
-        padding: 7px;
-        border-radius: 10px;
-        max-height: 40px;
-        background-color: #3ccd00;
-    }
-
-    .mat_tem {
-        min-height: 130px;
-        width: 182px;
-        height: 100% ;
+    .font_tem{
+        grid-area: tema;
+        display: block;
+        width: 150px;
+        height: 100%;
+        padding: 4px 0;
         position: relative;
-    }
-
-    .mat_tem_1{
-        height: 104px;
         overflow: auto;
+        font-size: 10px;
     }
 
-    .mat_tem_1::-webkit-scrollbar {
+    .font_tem::-webkit-scrollbar {
         width: 10px; height: 10px;
         
     }
 
-    .mat_tem_1::-webkit-scrollbar-track {
+    .font_tem::-webkit-scrollbar-track {
         background-color: #fff;
     }
 
-    .mat_tem_1::-webkit-scrollbar-thumb {
+    .font_tem::-webkit-scrollbar-thumb {
         background-color: #8ce8e8;
         border-radius: 10px;
         border: 3px solid #fff; /* Coloca un borde igual al color del track */
         transition: background-color 0.3s ease; /* Suaviza la transición del color */
     }
 
-    .mat_tem_1::-webkit-scrollbar-thumb:active {
+    .font_tem::-webkit-scrollbar-thumb:active {
         background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
     }
 
-    .mat_tem_1::-webkit-scrollbar-button {
+    .font_tem::-webkit-scrollbar-button {
         display: none;
     }
 
-    .font_mat{
-        font-size: 18px;
-        color: #16c4c4;
-        margin-bottom: 10px;
+    .asign_tit_form, .asign_tit_sum{
+        grid-area: tipo_tit;
+        font-size: 16px;
+        color: white;
+        padding: 7px;
+        border-radius: 10px;
+        height: fit-content;
     }
 
+    .asign_tit_form{
+        background-color: #0588c8;
+    }
+
+    .asign_tit_sum{
+        background-color: #3ccd00;
+    }
+    
     .ind_des{
-        font-size: 12px;
+        grid-area: indi_deta;
+        font-size: 10px;
         margin-left: 5%;
         max-width: 30vw;
-        height: 110px;
+        height: 75px;
         overflow: auto;
     }
 
@@ -936,9 +1222,10 @@ header.scrolled {
     }
 
     .ind_prin{
-        font-size: 14px;
+        grid-area: indi_princ;
+        font-size: 12px;
         width: 17vw;
-        height: 110px;
+        height: 75px;
         overflow: auto;
     }
 
@@ -1117,23 +1404,48 @@ header.scrolled {
         pointer-events: none;
         width: 100%;
         height: 100%;
+        z-index: 30;
 
     }
 
     .modal{
         background-color: white;
         width: 85%;
-        min-width: 800px;
-        padding: 30px 50px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        height: 200vh;
         border-radius: 10px;
         max-height: 80%;
+        padding: 1%;
+        display: grid;
+        grid-template-rows: 30px 80px 1fr;
+        grid-template-areas:
+        "boton"
+        "semana"
+        "dias_semana";
+    }
+
+    .boton_cerrar{
+        grid-area: boton;
+        display: flex;
+        width: 100%;
+        justify-content: right;
+    }
+
+    .boton_cerrar button i{
+        color: #000;
+        transition: .3s ease;
+    }
+
+    .boton_cerrar button i:hover{
+        color: #16c4c4;
+    }
+
+    .semana_tit{
+        grid-area: semana;
+        color: #0e8282;
     }
 
     .modal_content {
-        padding-right: 1%;
-        height: 85%;
+        grid-area: dias_semana;
         overflow: auto;
         display: flex;
         flex-direction: column;
@@ -1175,59 +1487,89 @@ header.scrolled {
         display: flex;
     }
 
+    .dias_asignacion{
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 170px auto;
+        grid-template-areas:
+        "dia_fecha_grid asignacion_grid";
+    }
+
     .dia_fecha_modal_content{
+        grid-area: dia_fecha_grid;
         width: 170px;
         justify-content: space-around;
         align-items: center;
         text-align: center;
+        display: grid;
+        grid-template-rows: 50px 40px;
+        grid-template-columns: 140px;
+        grid-template-areas:
+        "dia_grid"
+        "fecha_grid";
     }
 
     .dia_modal_content{
-        font-size: 20px;
+        font-size: 18px;
         color: #16c4c4;
+        grid-area: dia_grid;
     }
 
-    .asig_modal_content_in{
+    .fecha_modal_content{
+        grid-area: fecha_grid;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #ddf1f1;
+    }
+
+    .asig_modal_content, .asig_modal_content_in, .asig_modal_content_fi{
+        grid-area: asignacion_grid;
         background-color: #ddf1f1;
         width: 100%;
         padding: 10px;
         padding-bottom: 3%;
-        margin-left: 10px;
+    }
+
+    .asig_modal_content_in{
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
 
-    .asig_modal_content{
-        background-color: #ddf1f1;
-        width: 100%;
-        padding: 10px;
-        padding-bottom: 3%;
-        margin-left: 10px;
-    }
-
     .asig_modal_content_fi{
-        background-color: #ddf1f1;
-        width: 100%;
-        padding: 10px;
         padding-bottom: 0;
-        margin-left: 10px;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
     }
 
     .one_asig_modal_content{
-        display: flex;
+        display: grid;
         background-color: white;
         width: 100%;
         height: 180px;
-        align-items: center;
         min-height: 130px;
         padding: 10px;
         border-radius: 10px;
         margin-bottom: 10px;
+        grid-template-columns: minmax(180px, 20%) minmax(30px, auto) auto auto;
+        grid-template-rows: 26px 18px auto 50px;
+        grid-template-areas: 
+        "materia blank tipo_tit tipo_tit"
+        "tema blank tipo_tit tipo_tit"
+        "tema blank indi_princ indi_deta"
+        "adjun blank indi_princ indi_deta"
+        ;
+    }
+
+    .grid_with_buttom{
+        grid-template-rows: 26px 18px auto;
+        grid-template-areas: 
+        "materia blank tipo_tit tipo_tit"
+        "tema blank tipo_tit tipo_tit"
+        "tema blank indi_princ indi_deta";
     }
 
     .adjun_boton{
+        grid-area: adjun;
         color: white;
         width: 180px;
         background-color: #0e8282;
@@ -1236,8 +1578,6 @@ header.scrolled {
         align-items: center;
         display: flex;
         border-radius: 10px;
-        position: absolute;
-        bottom: 0;
         cursor: pointer;
         transition: background 0.3s ease;
     }
@@ -1246,73 +1586,83 @@ header.scrolled {
         background-color: #16c4c4;
     }
 
+    .adjun_icon{
+        font-size: 20px;
+        padding-right: 10px;
+    }
+
+    .adjun_font{
+        font-size: 12px;
+    }
+
     .asign_content{
+        grid-area: contenido_asign;
         margin-left: 50px;
         height: 100%;
         flex-grow: 1;
     }
 
-    .asign_tit_form{
-        font-size: 20px;
-        color: white;
-        padding: 7px;
-        border-radius: 10px;
-        max-height: 40px;
-        background-color: #0588c8;
+    .font_mat{
+        grid-area: materia;
+        font-size: 18px;
+        color: #16c4c4;
+        margin-bottom: 8px;
     }
 
-    .asign_tit_sum{
-        font-size: 20px;
-        color: white;
-        padding: 7px;
-        border-radius: 10px;
-        max-height: 40px;
-        background-color: #3ccd00;
-    }
-
-    .mat_tem {
-        min-height: 130px;
+    .font_tem{
+        grid-area: tema;
+        display: block;
         width: 182px;
-        height: 100% ;
+        height: 100%;
+        padding: 8px 0;
         position: relative;
-    }
-
-    .mat_tem_1{
-        height: 104px;
         overflow: auto;
+        font-size: 12px;
     }
 
-    .mat_tem_1::-webkit-scrollbar {
+    .font_tem::-webkit-scrollbar {
         width: 10px; height: 10px;
         
     }
 
-    .mat_tem_1::-webkit-scrollbar-track {
+    .font_tem::-webkit-scrollbar-track {
         background-color: #fff;
     }
 
-    .mat_tem_1::-webkit-scrollbar-thumb {
+    .font_tem::-webkit-scrollbar-thumb {
         background-color: #8ce8e8;
         border-radius: 10px;
         border: 3px solid #fff; /* Coloca un borde igual al color del track */
         transition: background-color 0.3s ease; /* Suaviza la transición del color */
     }
 
-    .mat_tem_1::-webkit-scrollbar-thumb:active {
+    .font_tem::-webkit-scrollbar-thumb:active {
         background-color: #16c4c4; /* Cambia el color del thumb al ser presionado */
     }
 
-    .mat_tem_1::-webkit-scrollbar-button {
+    .font_tem::-webkit-scrollbar-button {
         display: none;
     }
 
-    .font_mat{
-        font-size: 18px;
-        color: #16c4c4;
-        margin-bottom: 10px;
+    .asign_tit_form, .asign_tit_sum{
+        grid-area: tipo_tit;
+        font-size: 20px;
+        color: white;
+        padding: 7px;
+        border-radius: 10px;
+        max-height: 40px;
     }
 
+    .asign_tit_form{
+        background-color: #0588c8;
+    }
+
+    .asign_tit_sum{
+        background-color: #3ccd00;
+    }
+    
     .ind_des{
+        grid-area: indi_deta;
         font-size: 12px;
         margin-left: 5%;
         max-width: 30vw;
@@ -1344,6 +1694,7 @@ header.scrolled {
     }
 
     .ind_prin{
+        grid-area: indi_princ;
         font-size: 14px;
         width: 17vw;
         height: 110px;

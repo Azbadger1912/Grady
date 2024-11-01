@@ -265,8 +265,8 @@ function crearAsignacion(materia, tema, ind_prin, ind_det, tipo, asignacion, adj
 
 // Función para actualizar los días del calendario
 function updateCalendar(month, year) {
-    eliminarElementos();
-    fetchData();
+    // eliminarElementos();
+    // fetchData();
     let mes;
     switch (month) {
         case 1: mes = 'Enero'; break;
@@ -418,8 +418,6 @@ function verificarPantalla() {
 // Variable global para el mes y año actuales
 let currentMonth = new Date().getUTCMonth() + 1; // 1 a 12
 let currentYear = new Date().getUTCFullYear();
-
-currentMonth = 8;
 
 // Actualizar el calendario al cargar la página
 updateCalendar(currentMonth, currentYear);

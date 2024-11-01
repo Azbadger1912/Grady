@@ -419,8 +419,6 @@ function verificarPantalla() {
 let currentMonth = new Date().getUTCMonth() + 1; // 1 a 12
 let currentYear = new Date().getUTCFullYear();
 
-currentMonth = 8;
-
 // Actualizar el calendario al cargar la página
 updateCalendar(currentMonth, currentYear);
 

@@ -1,3 +1,5 @@
+//si
+
 // Hacer consulta de las actividades en la base de datos y colocarlas en el formato adecuado
 async function fetchData() {
     try {

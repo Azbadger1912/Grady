@@ -227,7 +227,7 @@ header.scrolled {
         display: flex;
         align-items: center;
         font-size: 18px;
-        margin: 2vh 0 1vh 10%;
+        margin: 2vh 0 2vh 10%;
         text-align: center;
         justify-content: center;
         background-color: #16c4c4;
@@ -1740,22 +1740,20 @@ header.scrolled {
         color: #0e8282;
     }
 
-    .pre_asig .sum{
+    .pre_asig .sum, .pre_asig .form{
         font-size: 10px;
-        color: #3ccd00;
         padding: 5px;
         background-color: white;
         margin: 0 5px;
         border-radius: 11px;
     }
 
+    .pre_asig .sum{
+        color: #3ccd00;
+    }
+
     .pre_asig .form{
-        font-size: 10px;
         color: #0588c8;
-        padding: 5px;
-        background-color: white;
-        margin: 0 5px;
-        border-radius: 11px;
     }
 
     .tit_mat_prev{

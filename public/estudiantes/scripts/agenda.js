@@ -353,8 +353,8 @@ function updateCalendar(month, year) {
     for (let j = 0; j < startDay; j++) {
         days[j].textContent = prevMonthDay++;
     }
-    verificarPantalla()
-    updateModals(mes, mesAnt, mesPro)
+    verificarPantalla();
+    updateModals(mes, mesAnt, mesPro);
 }
 
 // Actualizar los dias de los modals al igual que el texto referente a la semana que pertenecen
